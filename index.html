@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>36ème Camp Biblique UJEEBN 2026 — Dosso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+
+<style>
+/* ============================================================
+   VARIABLES & RESET
+   ============================================================ */
+:root {
+  --white:    #ffffff;
+  --yellow:   #f6d400;
+  --black:    #111111;
+  --red:      #e30621;
+  --green:    #199556;
+  --gray:     #f4f4f4;
+  --gray-mid: #e0e0e0;
+  --gray-dark:#666;
+  --shadow:   0 4px 24px rgba(0,0,0,.12);
+  --shadow-lg:0 12px 48px rgba(0,0,0,.18);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--white);
+  color:var(--black);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--white)}
+::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:99px}
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+.container{width:min(94%,1160px);margin-inline:auto}
+.section{padding:90px 0}
+.section-label{
+  font-size:.7rem;font-weight:800;letter-spacing:.22em;
+  text-transform:uppercase;display:inline-block;margin-bottom:10px;
+}
+.label-red{color:var(--red)}
+.label-green{color:var(--green)}
+.label-yellow{color:#b89d00}
+.section-title{
+  font-size:clamp(1.9rem,5vw,3.2rem);
+  font-weight:900;line-height:1.1;margin-bottom:14px;
+}
+.section-sub{font-size:1rem;color:var(--gray-dark);line-height:1.75;max-width:560px}
+.center{text-align:center}
+.center .section-sub{margin-inline:auto}
+.mi{font-family:'Material Icons Round';font-size:1.2em;vertical-align:middle;line-height:1}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border-radius:6px;
+  font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;
+  cursor:pointer;border:none;transition:all .25s ease;
+  position:relative;overflow:hidden;
+}
+.btn-yellow{background:var(--yellow);color:var(--black);box-shadow:0 4px 18px rgba(246,212,0,.4)}
+.btn-yellow:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 30px rgba(246,212,0,.55)}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 4px 18px rgba(227,6,33,.35)}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(227,6,33,.5)}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 4px 18px rgba(25,149,86,.35)}
+.btn-green:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(25,149,86,.5)}
+.btn-outline{background:transparent;color:var(--black);border:2px solid var(--black)}
+.btn-outline:hover{background:var(--black);color:var(--white)}
+.btn-black{background:var(--black);color:var(--white)}
+.btn-black:hover{background:#333;transform:translateY(-2px)}
+.btn-wa{background:#25d366;color:#fff}
+.btn-wa:hover{background:#128c7e;transform:translateY(-2px)}
+
+/* ============================================================
+   SCROLL ANIMATIONS
+   ============================================================ */
+.anim-up{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.anim-up.visible{opacity:1;transform:none}
+.anim-in{opacity:0;transition:opacity .8s ease}
+.anim-in.visible{opacity:1}
+.anim-left{opacity:0;transform:translateX(-36px);transition:opacity .7s ease,transform .7s ease}
+.anim-left.visible{opacity:1;transform:none}
+.anim-right{opacity:0;transform:translateX(36px);transition:opacity .7s ease,transform .7s ease}
+.anim-right.visible{opacity:1;transform:none}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:14px 0;background:rgba(255,255,255,.0);
+  transition:background .4s,box-shadow .4s,padding .4s;
+}
+nav.scrolled{
+  background:rgba(255,255,255,.96);
+  box-shadow:0 2px 20px rgba(0,0,0,.08);
+  padding:10px 0;
+  backdrop-filter:blur(16px);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  width:min(96%,1160px);margin-inline:auto;
+}
+.nav-logo img{height:44px;object-fit:contain}
+.nav-logo-txt{
+  font-family:'Bebas Neue',sans-serif;font-size:1.5rem;
+  letter-spacing:.06em;line-height:1;
+}
+.nav-logo-txt .y{color:var(--yellow)}
+.nav-logo-txt .r{color:var(--red)}
+.nav-logo-txt .g{color:var(--green)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.nav-cta .btn{padding:9px 20px;font-size:.85rem}
+
+/* ============================================================
+   HERO — notebook grid + split layout
+   ============================================================ */
+#hero{
+  min-height:100svh;
+  display:flex;align-items:center;
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  /* Notebook grid background */
+  background-image:
+    linear-gradient(rgba(246,212,0,.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(246,212,0,.18) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px, 12px 12px, 12px 12px;
+}
+/* Red vertical line like a notebook */
+#hero::before{
+  content:'';position:absolute;
+  left:clamp(60px,8vw,110px);top:0;bottom:0;width:2px;
+  background:rgba(227,6,33,.25);z-index:1;pointer-events:none;
+}
+.hero-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  width:100%;align-items:stretch;min-height:100svh;
+  position:relative;z-index:2;
+}
+/* ---- Hero Left ---- */
+.hero-left{
+  padding:130px clamp(20px,4vw,60px) 80px clamp(80px,10vw,140px);
+  display:flex;flex-direction:column;justify-content:center;gap:0;
+}
+.hero-edition{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--yellow);color:var(--black);
+  padding:5px 14px;border-radius:4px;
+  font-size:.72rem;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;margin-bottom:20px;
+  width:fit-content;
+}
+/* Big inclined logo-style title */
+.hero-title-block{margin-bottom:20px}
+.hero-big{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.6rem,6.5vw,5rem);
+  line-height:.95;letter-spacing:.02em;
+  display:block;
+}
+.hero-big.t1{color:var(--black)}
+.hero-big.t2{color:var(--yellow);text-shadow:1px 1px 0 rgba(0,0,0,.25)}
+.hero-big.t3{color:var(--red)}
+.hero-big.t4{color:var(--green)}
+/* Inclined badge */
+.hero-inclined{
+  display:inline-block;
+  transform:rotate(-3deg) skewX(-4deg);
+  background:var(--black);
+  color:var(--yellow);
+  padding:2px 16px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.4rem,3.5vw,2.4rem);
+  letter-spacing:.06em;
+  margin:6px 0;
+  box-shadow:4px 4px 0 rgba(227,6,33,.4);
+}
+.hero-theme-block{
+  border-left:4px solid var(--yellow);
+  padding:14px 18px;
+  background:rgba(246,212,0,.1);
+  border-radius:0 8px 8px 0;
+  margin:20px 0;
+}
+.hero-theme-label{
+  font-size:.65rem;font-weight:800;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--red);margin-bottom:4px;
+}
+.hero-theme-text{font-size:1.05rem;font-weight:700;color:var(--black)}
+.hero-theme-verse{font-size:.82rem;color:var(--green);font-weight:600;margin-top:3px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.hero-chip{
+  display:flex;align-items:center;gap:5px;
+  padding:7px 14px;border-radius:4px;
+  background:#fff;border:1.5px solid var(--gray-mid);
+  font-size:.8rem;font-weight:600;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.hero-chip .mi{font-size:1rem;color:var(--red)}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ---- Hero Right — Carousel ---- */
+.hero-right{
+  background:var(--black);
+  position:relative;overflow:hidden;
+  min-height:500px;
+}
+.hero-carousel{position:relative;width:100%;height:100%}
+.hero-slide{
+  position:absolute;inset:0;
+  opacity:0;transition:opacity .9s ease;
+  background:var(--black);
+}
+.hero-slide.active{opacity:1;z-index:1}
+.hero-slide img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.55);transition:transform 8s ease;
+}
+.hero-slide.active img{transform:scale(1.07)}
+.hero-slide-overlay{
+  position:absolute;inset:0;z-index:2;
+  background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.2) 50%,transparent 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:36px 32px;
+}
+.hero-slide-quote{
+  font-size:clamp(.9rem,1.8vw,1.15rem);
+  font-style:italic;
+  color:#fff;line-height:1.65;font-weight:400;
+  text-shadow:0 2px 12px rgba(0,0,0,.6);
+  border-left:3px solid var(--yellow);
+  padding-left:14px;
+  margin-bottom:14px;
+  max-width:400px;
+}
+.hero-slide-author{
+  font-size:.78rem;font-weight:700;
+  color:var(--yellow);letter-spacing:.08em;
+  text-transform:uppercase;
+}
+/* Carousel dots */
+.carousel-dots{
+  position:absolute;bottom:24px;right:24px;
+  display:flex;gap:8px;z-index:3;
+}
+.carousel-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,.4);cursor:pointer;
+  transition:all .3s;
+}
+.carousel-dot.active{background:var(--yellow);transform:scale(1.3)}
+/* Carousel arrows */
+.carousel-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  z-index:4;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.25);
+  color:#fff;cursor:pointer;display:grid;place-items:center;
+  backdrop-filter:blur(8px);transition:all .25s;opacity:0;
+}
+.hero-right:hover .carousel-nav{opacity:1}
+.carousel-nav:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow)}
+.carousel-prev{left:16px}
+.carousel-next{right:16px}
+/* Scroll arrow */
+.scroll-arrow{
+  position:absolute;bottom:24px;left:50%;
+  transform:translateX(-50%);
+  z-index:10;cursor:pointer;
+  animation:bounce 2s ease-in-out infinite;
+  display:none;/* shows only on desktop below hero-right */
+}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ============================================================
+   COUNTDOWN — Flip Clock
+   ============================================================ */
+#countdown{
+  background:var(--black);
+  padding:80px 0;
+  position:relative;overflow:hidden;
+}
+#countdown::before{
+  content:'';position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(246,212,0,.04) 0px,
+      rgba(246,212,0,.04) 1px,
+      transparent 1px,transparent 40px
+    );
+  pointer-events:none;
+}
+.cd-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.4rem,3.5vw,2.4rem);
+  color:var(--white);letter-spacing:.04em;
+  margin-bottom:8px;
+}
+.cd-sub{font-size:.9rem;color:rgba(255,255,255,.55);margin-bottom:48px}
+.cd-grid{
+  display:flex;justify-content:center;align-items:center;
+  gap:8px;flex-wrap:wrap;
+}
+.flip-unit{display:flex;flex-direction:column;align-items:center;gap:12px}
+.flip-label{
+  font-size:.65rem;font-weight:800;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--yellow);
+}
+/* Flip card */
+.flip-card{
+  width:clamp(70px,14vw,100px);
+  height:clamp(84px,17vw,120px);
+  position:relative;perspective:400px;
+}
+.flip-card-top,.flip-card-bottom,
+.flip-card-back-top,.flip-card-back-bottom{
+  position:absolute;left:0;right:0;height:50%;
+  background:#1a1a1a;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.6rem,7vw,4.5rem);
+  color:#fff;letter-spacing:-.02em;
+}
+.flip-card-top{
+  top:0;border-radius:8px 8px 0 0;
+  border-bottom:1.5px solid rgba(0,0,0,.5);
+  align-items:flex-end;padding-bottom:2px;
+  background:linear-gradient(to bottom,#232323,#1a1a1a);
+}
+.flip-card-bottom{
+  bottom:0;border-radius:0 0 8px 8px;
+  align-items:flex-start;padding-top:2px;
+  background:linear-gradient(to bottom,#151515,#1a1a1a);
+}
+.flip-card-back-top{
+  top:0;border-radius:8px 8px 0 0;
+  border-bottom:1.5px solid rgba(0,0,0,.5);
+  align-items:flex-end;padding-bottom:2px;
+  transform-origin:bottom center;
+  backface-visibility:hidden;
+  background:linear-gradient(to bottom,#232323,#1a1a1a);
+}
+.flip-card-back-bottom{
+  bottom:0;border-radius:0 0 8px 8px;
+  align-items:flex-start;padding-top:2px;
+  transform:rotateX(180deg);
+  transform-origin:top center;
+  backface-visibility:hidden;
+  background:linear-gradient(to bottom,#151515,#1a1a1a);
+}
+.flip-card-top span,.flip-card-bottom span,
+.flip-card-back-top span,.flip-card-back-bottom span{
+  position:absolute;
+}
+.flip-card-top span{bottom:2px}
+.flip-card-bottom span{top:2px}
+.flip-card-back-top span{bottom:2px}
+.flip-card-back-bottom span{top:2px}
+/* Animated fold */
+.flip-fold{
+  position:absolute;top:50%;left:0;right:0;height:50%;
+  transform-origin:top center;
+  animation:none;
+  z-index:10;
+  border-radius:0 0 8px 8px;
+  background:linear-gradient(to bottom,#1a1a1a,#151515);
+  display:flex;align-items:flex-start;justify-content:center;
+  overflow:hidden;
+  backface-visibility:hidden;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.6rem,7vw,4.5rem);
+  color:#fff;
+  box-shadow:0 6px 20px rgba(0,0,0,.6);
+}
+.flip-fold span{position:absolute;top:2px}
+.flip-fold.flipping{
+  animation:fold-down .45s ease-in-out forwards;
+}
+@keyframes fold-down{
+  0%  {transform:rotateX(0deg);background:linear-gradient(to bottom,#1a1a1a,#151515)}
+  50% {transform:rotateX(-90deg);background:linear-gradient(to bottom,#333,#222)}
+  100%{transform:rotateX(-180deg);background:linear-gradient(to bottom,#151515,#1a1a1a)}
+}
+/* Gloss line */
+.flip-gloss{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:rgba(255,255,255,.08);border-radius:8px 8px 0 0;
+  pointer-events:none;z-index:20;
+}
+.cd-sep{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2rem,5vw,3.5rem);
+  color:var(--yellow);align-self:center;
+  animation:blink-sep 1s step-start infinite;
+  margin-top:-16px;
+}
+@keyframes blink-sep{0%,100%{opacity:1}50%{opacity:0}}
+.cd-cta{margin-top:48px}
+
+/* ============================================================
+   TRANSFORMATION
+   ============================================================ */
+#transformation{background:var(--white)}
+.transform-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));
+  gap:16px;margin-top:48px;
+}
+.transform-card{
+  padding:28px 18px;border-radius:10px;text-align:center;
+  border:2px solid var(--gray-mid);background:#fff;
+  cursor:default;transition:all .3s ease;
+  position:relative;overflow:hidden;
+}
+.transform-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  opacity:0;transition:opacity .3s;
+}
+.tc-1::after{background:var(--yellow)}
+.tc-2::after{background:var(--red)}
+.tc-3::after{background:var(--green)}
+.tc-4::after{background:var(--yellow)}
+.tc-5::after{background:var(--red)}
+.transform-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+  border-color:transparent;
+}
+.transform-card:hover::after{opacity:1}
+.tc-icon{
+  width:52px;height:52px;border-radius:50%;
+  display:grid;place-items:center;margin:0 auto 14px;
+  font-size:1.6rem;
+}
+.tc-icon .mi{font-size:1.7rem}
+.tc-1 .tc-icon{background:rgba(246,212,0,.2);color:var(--black)}
+.tc-2 .tc-icon{background:rgba(227,6,33,.12);color:var(--red)}
+.tc-3 .tc-icon{background:rgba(25,149,86,.15);color:var(--green)}
+.tc-4 .tc-icon{background:rgba(246,212,0,.2);color:var(--black)}
+.tc-5 .tc-icon{background:rgba(227,6,33,.12);color:var(--red)}
+.tc-name{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.tc-desc{font-size:.78rem;color:var(--gray-dark);line-height:1.55}
+
+/* ============================================================
+   USP
+   ============================================================ */
+#usp{background:var(--black);padding:90px 0}
+.usp-header .section-title{color:var(--white)}
+.usp-header .section-sub{color:rgba(255,255,255,.55)}
+.usp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;margin-top:48px}
+.usp-card{
+  padding:40px 32px;background:#161616;
+  transition:all .3s ease;cursor:default;
+  position:relative;overflow:hidden;
+}
+.usp-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.usp-1::before{background:var(--yellow)}
+.usp-2::before{background:var(--red)}
+.usp-3::before{background:var(--green)}
+.usp-4::before{background:var(--yellow)}
+.usp-card:hover{background:#1d1d1d;transform:translateY(-4px)}
+.usp-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:4rem;color:rgba(255,255,255,.08);
+  line-height:1;margin-bottom:10px;
+}
+.usp-icon-wrap{
+  width:44px;height:44px;border-radius:8px;
+  display:grid;place-items:center;margin-bottom:16px;
+}
+.usp-1 .usp-icon-wrap{background:rgba(246,212,0,.2)}
+.usp-2 .usp-icon-wrap{background:rgba(227,6,33,.2)}
+.usp-3 .usp-icon-wrap{background:rgba(25,149,86,.2)}
+.usp-4 .usp-icon-wrap{background:rgba(246,212,0,.2)}
+.usp-icon-wrap .mi{font-size:1.4rem}
+.usp-1 .usp-icon-wrap .mi,.usp-4 .usp-icon-wrap .mi{color:var(--yellow)}
+.usp-2 .usp-icon-wrap .mi{color:var(--red)}
+.usp-3 .usp-icon-wrap .mi{color:var(--green)}
+.usp-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px}
+.usp-text{font-size:.83rem;color:rgba(255,255,255,.5);line-height:1.65}
+
+/* ============================================================
+   FLYER SECTION (simplified — no mockup)
+   ============================================================ */
+#flyer{
+  background:linear-gradient(135deg,var(--yellow) 0%,#f0c800 100%);
+  padding:80px 0;
+}
+.flyer-inner{
+  max-width:700px;margin-inline:auto;text-align:center;
+}
+.flyer-icon{
+  width:72px;height:72px;background:var(--black);border-radius:16px;
+  display:grid;place-items:center;margin:0 auto 24px;
+  box-shadow:0 8px 28px rgba(0,0,0,.3);
+}
+.flyer-icon .mi{font-size:2rem;color:var(--yellow)}
+.flyer-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2rem,5vw,3.5rem);
+  color:var(--black);letter-spacing:.02em;margin-bottom:12px;
+}
+.flyer-sub{
+  font-size:1rem;color:rgba(0,0,0,.65);line-height:1.7;margin-bottom:32px;
+}
+.flyer-steps{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:14px;margin-bottom:32px;text-align:left;
+}
+.flyer-step{
+  background:rgba(255,255,255,.55);
+  border:1.5px solid rgba(0,0,0,.1);
+  border-radius:10px;padding:16px 16px;
+}
+.flyer-step-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;color:var(--black);line-height:1;margin-bottom:6px;
+}
+.flyer-step-text{font-size:.8rem;font-weight:600;color:rgba(0,0,0,.7);line-height:1.5}
+/* Developer note */
+.dev-note{
+  background:rgba(0,0,0,.08);border:1.5px dashed rgba(0,0,0,.2);
+  border-radius:8px;padding:12px 18px;margin-bottom:24px;
+  text-align:left;font-size:.77rem;color:rgba(0,0,0,.55);line-height:1.6;
+}
+.dev-note strong{color:rgba(0,0,0,.7)}
+
+/* ============================================================
+   EXPERIENCE
+   ============================================================ */
+#experience{background:var(--gray)}
+.exp-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:18px;margin-top:48px;
+}
+.exp-card{
+  background:#fff;border-radius:12px;padding:30px 22px;
+  border:2px solid transparent;
+  transition:all .3s ease;cursor:default;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+}
+.exp-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+}
+.exp-1:hover{border-color:var(--yellow)}
+.exp-2:hover{border-color:var(--red)}
+.exp-3:hover{border-color:var(--green)}
+.exp-4:hover{border-color:var(--yellow)}
+.exp-5:hover{border-color:var(--red)}
+.exp-icon{
+  width:48px;height:48px;border-radius:10px;
+  display:grid;place-items:center;margin-bottom:16px;
+}
+.exp-1 .exp-icon{background:rgba(246,212,0,.2)}
+.exp-2 .exp-icon{background:rgba(227,6,33,.1)}
+.exp-3 .exp-icon{background:rgba(25,149,86,.12)}
+.exp-4 .exp-icon{background:rgba(246,212,0,.2)}
+.exp-5 .exp-icon{background:rgba(227,6,33,.1)}
+.exp-icon .mi{font-size:1.5rem}
+.exp-1 .exp-icon .mi,.exp-4 .exp-icon .mi{color:#b89d00}
+.exp-2 .exp-icon .mi,.exp-5 .exp-icon .mi{color:var(--red)}
+.exp-3 .exp-icon .mi{color:var(--green)}
+.exp-title{font-size:1rem;font-weight:700;margin-bottom:6px}
+.exp-desc{font-size:.8rem;color:var(--gray-dark);line-height:1.6}
+
+/* ============================================================
+   PAYMENT
+   ============================================================ */
+#payment{background:var(--white)}
+.payment-top{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px 0;
+}
+.pay-card{
+  border-radius:14px;padding:30px 24px;
+  border:2px solid var(--gray-mid);
+  transition:all .3s ease;
+}
+.pay-card:hover{
+  border-color:var(--yellow);
+  box-shadow:0 8px 30px rgba(246,212,0,.2);
+  transform:translateY(-4px);
+}
+.pay-logo{
+  width:48px;height:48px;border-radius:10px;
+  display:grid;place-items:center;margin-bottom:14px;
+}
+.pay-amana .pay-logo{background:rgba(25,149,86,.12)}
+.pay-amana .pay-logo .mi{color:var(--green);font-size:1.6rem}
+.pay-nita .pay-logo{background:rgba(246,212,0,.2)}
+.pay-nita .pay-logo .mi{color:#b89d00;font-size:1.6rem}
+.pay-name{font-size:1.3rem;font-weight:800;margin-bottom:6px}
+.pay-amana .pay-name{color:var(--green)}
+.pay-nita .pay-name{color:#b89d00}
+.pay-field{
+  background:var(--gray);border:1.5px solid var(--gray-mid);
+  border-radius:8px;padding:11px 14px;margin-top:10px;
+}
+.pay-field-label{font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-dark);margin-bottom:3px}
+.pay-field-val{font-size:.9rem;font-weight:600;color:var(--black)}
+.steps-row{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:14px;margin:32px 0;
+}
+.step-item{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  padding:20px 14px;background:var(--gray);border-radius:10px;
+  text-align:center;
+}
+.step-num{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--yellow);color:var(--black);
+  font-weight:900;font-size:.9rem;
+  display:grid;place-items:center;
+  box-shadow:0 4px 12px rgba(246,212,0,.4);
+}
+.step-text{font-size:.82rem;font-weight:600;color:var(--black);line-height:1.45}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+#testimonials{background:var(--black);padding:90px 0}
+.test-header .section-title{color:#fff}
+.test-header .section-sub{color:rgba(255,255,255,.5)}
+.test-track-wrap{
+  overflow:hidden;margin-top:48px;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+}
+.test-track{display:flex;gap:18px;width:max-content;animation:scroll-l 40s linear infinite}
+@keyframes scroll-l{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.test-track:hover{animation-play-state:paused}
+.test-card{
+  flex-shrink:0;width:290px;
+  background:#1a1a1a;border:1.5px solid #2a2a2a;
+  border-radius:12px;padding:24px 22px;
+}
+.test-stars{margin-bottom:10px}
+.test-stars .mi{color:var(--yellow);font-size:1rem}
+.test-text{
+  font-size:.86rem;color:rgba(255,255,255,.75);
+  line-height:1.7;font-style:italic;margin-bottom:16px;
+}
+.test-author{display:flex;align-items:center;gap:10px}
+.test-av{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,var(--yellow),var(--red));
+  display:grid;place-items:center;flex-shrink:0;
+  font-weight:700;font-size:.9rem;color:#fff;
+}
+.test-name{font-size:.86rem;font-weight:700;color:#fff}
+.test-role{font-size:.72rem;color:var(--yellow)}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+#gallery{background:var(--white)}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;margin-top:48px;
+}
+.gal-item{
+  border-radius:10px;overflow:hidden;
+  aspect-ratio:1;position:relative;cursor:pointer;
+  background:var(--gray);
+}
+.gal-item:nth-child(1){grid-column:span 2;aspect-ratio:2/1}
+.gal-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .5s ease,filter .3s;filter:brightness(.85);
+}
+.gal-item:hover img{transform:scale(1.08);filter:brightness(1)}
+.gal-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
+  opacity:0;transition:opacity .3s;
+  display:flex;align-items:flex-end;padding:14px;
+}
+.gal-item:hover .gal-overlay{opacity:1}
+.gal-overlay span{font-size:.75rem;font-weight:700;color:#fff}
+.gal-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;
+  color:var(--gray-dark);
+}
+.gal-placeholder .mi{font-size:2.4rem;color:var(--gray-mid)}
+.gal-placeholder span{font-size:.75rem;font-weight:600}
+
+/* Lightbox */
+#lightbox{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.93);z-index:9999;
+  place-items:center;backdrop-filter:blur(12px);
+}
+#lightbox.active{display:grid;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+#lightbox img{max-width:90vw;max-height:88vh;border-radius:10px}
+#lb-close{
+  position:absolute;top:18px;right:18px;
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:#fff;cursor:pointer;display:grid;place-items:center;
+  font-size:1.4rem;transition:background .2s;
+}
+#lb-close:hover{background:var(--red)}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+#faq{background:var(--gray)}
+.faq-list{max-width:720px;margin:48px auto 0;display:flex;flex-direction:column;gap:10px}
+.faq-item{
+  background:#fff;border:1.5px solid var(--gray-mid);
+  border-radius:10px;overflow:hidden;transition:border-color .3s;
+}
+.faq-item.open{border-color:var(--yellow)}
+.faq-q{
+  padding:18px 22px;display:flex;align-items:center;
+  justify-content:space-between;cursor:pointer;
+  font-weight:700;font-size:.95rem;gap:12px;user-select:none;
+}
+.faq-icon{
+  width:28px;height:28px;border-radius:50%;
+  border:2px solid var(--gray-mid);display:grid;place-items:center;
+  flex-shrink:0;transition:all .3s;color:var(--black);
+}
+.faq-icon .mi{font-size:1rem;transition:transform .3s}
+.faq-item.open .faq-icon{background:var(--yellow);border-color:var(--yellow)}
+.faq-item.open .faq-icon .mi{transform:rotate(45deg)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease,padding .4s;
+  font-size:.87rem;color:var(--gray-dark);line-height:1.7;
+}
+.faq-item.open .faq-a{max-height:200px;padding:0 22px 18px}
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+#final-cta{
+  background:var(--black);padding:120px 0;
+  text-align:center;position:relative;overflow:hidden;
+}
+#final-cta::before{
+  content:'';position:absolute;
+  top:-50%;left:-20%;width:80%;height:200%;
+  background:radial-gradient(circle at 50% 50%,rgba(246,212,0,.06),transparent 60%);
+  pointer-events:none;
+}
+#final-cta::after{
+  content:'';position:absolute;
+  top:-50%;right:-20%;width:80%;height:200%;
+  background:radial-gradient(circle at 50% 50%,rgba(227,6,33,.06),transparent 60%);
+  pointer-events:none;
+}
+.final-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 16px;border-radius:4px;
+  background:var(--yellow);color:var(--black);
+  font-size:.7rem;font-weight:800;letter-spacing:.18em;
+  text-transform:uppercase;margin-bottom:20px;
+}
+.final-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.2rem,6vw,4.5rem);
+  color:#fff;letter-spacing:.02em;line-height:1.05;
+  margin-bottom:16px;
+}
+.final-title .r{color:var(--red)}
+.final-title .g{color:var(--green)}
+.final-title .y{color:var(--yellow)}
+.final-text{font-size:1rem;color:rgba(255,255,255,.55);max-width:520px;margin:0 auto 36px;line-height:1.75}
+.final-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  background:#0a0a0a;border-top:1px solid #1a1a1a;
+  padding:60px 0 28px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr;
+  gap:40px;margin-bottom:48px;
+}
+.footer-brand .nav-logo-txt{font-size:1.8rem;margin-bottom:10px}
+.footer-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:20px}
+.footer-social{display:flex;gap:10px}
+.f-soc{
+  width:38px;height:38px;border-radius:8px;
+  background:#1a1a1a;border:1px solid #2a2a2a;
+  display:grid;place-items:center;cursor:pointer;
+  transition:all .3s;
+}
+.f-soc .mi{font-size:1.2rem;color:rgba(255,255,255,.55)}
+.f-soc:hover{background:var(--yellow);border-color:var(--yellow)}
+.f-soc:hover .mi{color:var(--black)}
+.footer-col-title{
+  font-size:.68rem;font-weight:800;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--yellow);margin-bottom:16px;
+}
+.footer-links{display:flex;flex-direction:column;gap:10px}
+.footer-link{font-size:.83rem;color:rgba(255,255,255,.45);transition:color .2s;cursor:pointer}
+.footer-link:hover{color:var(--yellow)}
+.footer-bottom{
+  border-top:1px solid #1a1a1a;padding-top:22px;
+  text-align:center;font-size:.76rem;color:rgba(255,255,255,.3);
+}
+.footer-bottom span{color:rgba(246,212,0,.5)}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media(max-width:860px){
+  .hero-layout{grid-template-columns:1fr}
+  .hero-right{min-height:360px}
+  .hero-left{padding:110px 24px 50px 24px}
+  #hero::before{display:none}
+  .scroll-arrow{display:block}
+  nav .nav-cta .btn:first-child{display:none}
+  .payment-top{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .usp-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+  .usp-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .gal-item:nth-child(1){grid-column:span 2}
+  .hero-btns{flex-direction:column}
+  .hero-btns .btn{width:100%;justify-content:center}
+  .cd-grid{gap:4px}
+  .final-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div id="lb-close" onclick="closeLb()"><span class="material-icons-round">close</span></div>
+  <img id="lb-img" src="" alt=""/>
+</div>
+
+<!-- ================================================================
+     NAV
+     ================================================================ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-txt">
+        CAMP<span class="y"> BIBLIQUE</span><br>
+        <span class="r">UJEEBN</span><span class="g"> 2026</span>
+      </div>
+    </div>
+    <div class="nav-cta">
+      <a href="#experience" class="btn btn-outline" style="padding:8px 18px;font-size:.82rem;">Programme</a>
+      <a href="#payment" class="btn btn-yellow" style="padding:9px 20px;font-size:.85rem;">
+        <span class="mi material-icons-round" style="font-size:1rem;">how_to_reg</span>
+        Préinscription
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================================================================
+     HERO
+     ================================================================ -->
+<section id="hero">
+  <div class="hero-layout">
+
+    <!-- LEFT : text content -->
+    <div class="hero-left">
+      <div class="hero-edition">
+        <span class="material-icons-round" style="font-size:.9rem;">local_fire_department</span>
+        36ème Édition • Dosso 2026
+      </div>
+
+      <div class="hero-title-block">
+        <span class="hero-big t1">CAMP</span>
+        <span class="hero-inclined">BIBLIQUE</span>
+        <br>
+        <span class="hero-big t3">UJEEBN</span>
+        <span class="hero-big t4"> 2026</span>
+      </div>
+
+      <div class="hero-theme-block">
+        <div class="hero-theme-label">
+          <span class="material-icons-round" style="font-size:.75rem;vertical-align:middle">menu_book</span>
+          Thème 2026
+        </div>
+        <div class="hero-theme-text">"Témoigne du Christ par ta vie"</div>
+        <div class="hero-theme-verse">
+          <span class="material-icons-round" style="font-size:.75rem;vertical-align:middle">auto_stories</span>
+          Matthieu 5:14-16
+        </div>
+      </div>
+
+      <div class="hero-chips">
+        <div class="hero-chip">
+          <span class="material-icons-round mi" style="color:var(--red)">location_on</span> Dosso
+        </div>
+        <div class="hero-chip">
+          <span class="material-icons-round mi" style="color:var(--green)">calendar_month</span> 02 — 07 Août 2026
+        </div>
+        <div class="hero-chip">
+          <span class="material-icons-round mi" style="color:var(--black)">groups</span> Toute la jeunesse
+        </div>
+        <div class="hero-chip">
+          <span class="material-icons-round mi" style="color:var(--red)">local_fire_department</span> 6 jours de transformation
+        </div>
+      </div>
+
+      <div class="hero-btns">
+        <a href="#payment" class="btn btn-yellow">
+          <span class="material-icons-round" style="font-size:1.1rem">how_to_reg</span>
+          Je me préinscris
+        </a>
+        <a href="#flyer" class="btn btn-black">
+          <span class="material-icons-round" style="font-size:1.1rem">image</span>
+          Mon flyer "Je serai là"
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT : carousel -->
+    <div class="hero-right" id="hero-right">
+      <div class="hero-carousel" id="carousel">
+        <!-- Slides injected by JS -->
+      </div>
+
+      <button class="carousel-nav carousel-prev" onclick="carouselPrev()">
+        <span class="material-icons-round">chevron_left</span>
+      </button>
+      <button class="carousel-nav carousel-next" onclick="carouselNext()">
+        <span class="material-icons-round">chevron_right</span>
+      </button>
+
+      <div class="carousel-dots" id="carousel-dots"></div>
+
+      <!-- Colored border accent -->
+      <div style="position:absolute;top:0;left:0;bottom:0;width:5px;
+        background:linear-gradient(to bottom,var(--yellow),var(--red),var(--green));z-index:5;"></div>
+    </div>
+  </div>
+
+  <div class="scroll-arrow" onclick="document.getElementById('countdown').scrollIntoView({behavior:'smooth'})">
+    <span class="material-icons-round" style="color:var(--black);font-size:2rem;background:var(--yellow);border-radius:50%;padding:4px">keyboard_arrow_down</span>
+  </div>
+</section>
+
+<!-- ================================================================
+     COUNTDOWN
+     ================================================================ -->
+<section id="countdown">
+  <div class="container center">
+    <div class="section-label label-yellow" style="color:var(--yellow)">
+      <span class="material-icons-round" style="font-size:.9rem;vertical-align:middle">timer</span>
+      Compte à rebours
+    </div>
+    <div class="cd-title">Le compte à rebours a commencé…</div>
+    <div class="cd-sub">Le Camp Biblique UJEEBN 2026 approche à grands pas. Ta place t'attend à Dosso.</div>
+
+    <div class="cd-grid" id="cd-grid">
+      <!-- Days -->
+      <div class="flip-unit">
+        <div class="flip-card" id="fc-days">
+          <div class="flip-gloss"></div>
+          <div class="flip-card-top"><span id="fct-days-top">00</span></div>
+          <div class="flip-card-bottom"><span id="fct-days-bot">00</span></div>
+          <div class="flip-card-back-top"><span id="fcb-days-top">00</span></div>
+          <div class="flip-card-back-bottom"><span id="fcb-days-bot">00</span></div>
+          <div class="flip-fold" id="ff-days"><span id="fff-days">00</span></div>
+        </div>
+        <div class="flip-label">Jours</div>
+      </div>
+
+      <div class="cd-sep">:</div>
+
+      <!-- Hours -->
+      <div class="flip-unit">
+        <div class="flip-card" id="fc-hours">
+          <div class="flip-gloss"></div>
+          <div class="flip-card-top"><span id="fct-hours-top">00</span></div>
+          <div class="flip-card-bottom"><span id="fct-hours-bot">00</span></div>
+          <div class="flip-card-back-top"><span id="fcb-hours-top">00</span></div>
+          <div class="flip-card-back-bottom"><span id="fcb-hours-bot">00</span></div>
+          <div class="flip-fold" id="ff-hours"><span id="fff-hours">00</span></div>
+        </div>
+        <div class="flip-label">Heures</div>
+      </div>
+
+      <div class="cd-sep">:</div>
+
+      <!-- Minutes -->
+      <div class="flip-unit">
+        <div class="flip-card" id="fc-mins">
+          <div class="flip-gloss"></div>
+          <div class="flip-card-top"><span id="fct-mins-top">00</span></div>
+          <div class="flip-card-bottom"><span id="fct-mins-bot">00</span></div>
+          <div class="flip-card-back-top"><span id="fcb-mins-top">00</span></div>
+          <div class="flip-card-back-bottom"><span id="fcb-mins-bot">00</span></div>
+          <div class="flip-fold" id="ff-mins"><span id="fff-mins">00</span></div>
+        </div>
+        <div class="flip-label">Minutes</div>
+      </div>
+
+      <div class="cd-sep">:</div>
+
+      <!-- Seconds -->
+      <div class="flip-unit">
+        <div class="flip-card" id="fc-secs">
+          <div class="flip-gloss"></div>
+          <div class="flip-card-top"><span id="fct-secs-top">00</span></div>
+          <div class="flip-card-bottom"><span id="fct-secs-bot">00</span></div>
+          <div class="flip-card-back-top"><span id="fcb-secs-top">00</span></div>
+          <div class="flip-card-back-bottom"><span id="fcb-secs-bot">00</span></div>
+          <div class="flip-fold" id="ff-secs"><span id="fff-secs">00</span></div>
+        </div>
+        <div class="flip-label">Secondes</div>
+      </div>
+    </div>
+
+    <div class="cd-cta">
+      <a href="#payment" class="btn btn-yellow">
+        <span class="material-icons-round" style="font-size:1.1rem">confirmation_number</span>
+        Réserver ma place
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     TRANSFORMATION
+     ================================================================ -->
+<section id="transformation" class="section">
+  <div class="container">
+    <div class="center">
+      <span class="section-label label-red anim-up">
+        <span class="material-icons-round" style="font-size:.85rem;vertical-align:middle">local_fire_department</span>
+        Vivez la transformation
+      </span>
+      <h2 class="section-title anim-up" style="transition-delay:.1s">
+        Ce n'est pas un simple camp…<br>
+        <span style="color:var(--red)">C'est</span> <span style="color:var(--green)">une</span> <span style="color:var(--red)">rencontre</span>
+      </h2>
+      <p class="section-sub center anim-up" style="transition-delay:.2s">
+        Un lieu où des vies sont transformées, des vocations révélées, et une génération est éveillée à sa destinée en Christ.
+      </p>
+    </div>
+    <div class="transform-grid">
+      <div class="transform-card tc-1 anim-up" style="transition-delay:.1s">
+        <div class="tc-icon"><span class="material-icons-round mi">self_improvement</span></div>
+        <div class="tc-name">Prière</div>
+        <div class="tc-desc">Des heures intenses en présence de Dieu</div>
+      </div>
+      <div class="transform-card tc-2 anim-up" style="transition-delay:.2s">
+        <div class="tc-icon"><span class="material-icons-round mi">music_note</span></div>
+        <div class="tc-name">Louange</div>
+        <div class="tc-desc">L'adoration qui change l'atmosphère</div>
+      </div>
+      <div class="transform-card tc-3 anim-up" style="transition-delay:.3s">
+        <div class="tc-icon"><span class="material-icons-round mi">menu_book</span></div>
+        <div class="tc-name">Enseignements</div>
+        <div class="tc-desc">La Parole puissante et pertinente</div>
+      </div>
+      <div class="transform-card tc-4 anim-up" style="transition-delay:.4s">
+        <div class="tc-icon"><span class="material-icons-round mi">handshake</span></div>
+        <div class="tc-name">Communion</div>
+        <div class="tc-desc">Une famille spirituelle soudée</div>
+      </div>
+      <div class="transform-card tc-5 anim-up" style="transition-delay:.5s">
+        <div class="tc-icon"><span class="material-icons-round mi">bolt</span></div>
+        <div class="tc-name">Transformation</div>
+        <div class="tc-desc">Tu repartiras différent(e), c'est certain</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     USP
+     ================================================================ -->
+<section id="usp">
+  <div class="container">
+    <div class="center usp-header">
+      <span class="section-label anim-up" style="color:var(--yellow)">
+        <span class="material-icons-round" style="font-size:.85rem;vertical-align:middle">star</span>
+        Ce qui nous différencie
+      </span>
+      <h2 class="section-title anim-up" style="transition-delay:.1s;color:#fff">
+        Pourquoi cette édition<br>sera <span style="color:var(--yellow)">spéciale</span> ?
+      </h2>
+    </div>
+    <div class="usp-grid">
+      <div class="usp-card usp-1 anim-up" style="transition-delay:.1s">
+        <div class="usp-num">01</div>
+        <div class="usp-icon-wrap"><span class="material-icons-round mi">local_fire_department</span></div>
+        <div class="usp-title">Une jeunesse en feu pour Christ</div>
+        <div class="usp-text">Des centaines de jeunes rassemblés avec un seul cœur : honorer Christ et rayonner Sa lumière au Niger et au-delà.</div>
+      </div>
+      <div class="usp-card usp-2 anim-up" style="transition-delay:.2s">
+        <div class="usp-num">02</div>
+        <div class="usp-icon-wrap"><span class="material-icons-round mi">waves</span></div>
+        <div class="usp-title">Une expérience spirituelle profonde</div>
+        <div class="usp-text">6 jours d'immersion totale dans la prière, la louange, la Parole. Pas un spectacle — une rencontre réelle avec Dieu.</div>
+      </div>
+      <div class="usp-card usp-3 anim-up" style="transition-delay:.3s">
+        <div class="usp-num">03</div>
+        <div class="usp-icon-wrap"><span class="material-icons-round mi">image</span></div>
+        <div class="usp-title">Ton flyer personnalisé "Je serai là"</div>
+        <div class="usp-text">Génère ton flyer avec ta photo, partage sur WhatsApp, Facebook et TikTok. Invite ta communauté avec style.</div>
+      </div>
+      <div class="usp-card usp-4 anim-up" style="transition-delay:.4s">
+        <div class="usp-num">04</div>
+        <div class="usp-icon-wrap"><span class="material-icons-round mi">account_balance</span></div>
+        <div class="usp-title">Une édition historique à Dosso</div>
+        <div class="usp-text">La 36ème édition — un moment marquant dans l'histoire de l'UJEEBN. Tu veux pouvoir dire "j'y étais".</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FLYER SECTION
+     ================================================================ -->
+<!-- NOTE DÉVELOPPEUR :
+     Le générateur de flyer sera implémenté en V2, après réception
+     du template officiel fourni par l'organisateur de l'événement.
+     Cette section contient uniquement le bouton d'appel à l'action
+     et les instructions pour l'utilisateur.
+-->
+<section id="flyer">
+  <div class="container">
+    <div class="flyer-inner anim-up">
+      <div class="flyer-icon">
+        <span class="material-icons-round">add_photo_alternate</span>
+      </div>
+
+      <div class="flyer-title">Crée ton flyer<br>"Je serai là"</div>
+      <p class="flyer-sub">
+        En quelques secondes, génère ton flyer personnalisé avec ta photo
+        et partage-le partout. Montre à ta communauté que tu seras là !
+      </p>
+
+      <div class="dev-note">
+        <strong>🛠️ Note développeur :</strong> Le générateur de flyer sera intégré ici après réception
+        du template officiel fourni par l'organisateur. L'interface est prête — il ne reste qu'à brancher
+        la logique de composition d'image (canvas / backend).
+      </div>
+
+      <div class="flyer-steps">
+        <div class="flyer-step">
+          <div class="flyer-step-num">01</div>
+          <div class="flyer-step-text">Clique sur le bouton ci-dessous</div>
+        </div>
+        <div class="flyer-step">
+          <div class="flyer-step-num">02</div>
+          <div class="flyer-step-text">Uploade ta meilleure photo</div>
+        </div>
+        <div class="flyer-step">
+          <div class="flyer-step-num">03</div>
+          <div class="flyer-step-text">Le flyer se génère automatiquement</div>
+        </div>
+        <div class="flyer-step">
+          <div class="flyer-step-num">04</div>
+          <div class="flyer-step-text">Télécharge & partage partout !</div>
+        </div>
+      </div>
+
+      <button class="btn btn-black" onclick="alert('Le générateur de flyer sera bientôt disponible ! Revenez très bientôt. 🔥')" style="font-size:1rem;padding:16px 36px;">
+        <span class="material-icons-round" style="font-size:1.2rem">add_photo_alternate</span>
+        Générer mon flyer — Bientôt disponible
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     EXPERIENCE
+     ================================================================ -->
+<section id="experience" class="section">
+  <div class="container">
+    <div class="center">
+      <span class="section-label label-green anim-up">
+        <span class="material-icons-round" style="font-size:.85rem;vertical-align:middle">auto_awesome</span>
+        Au programme
+      </span>
+      <h2 class="section-title anim-up" style="transition-delay:.1s">
+        Voici ce qui <span style="color:var(--red)">t'attend</span>…
+      </h2>
+      <p class="section-sub center anim-up" style="transition-delay:.2s">
+        6 jours inoubliables qui vont changer ta vie pour toujours.
+      </p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card exp-1 anim-up" style="transition-delay:.1s">
+        <div class="exp-icon"><span class="material-icons-round mi">queue_music</span></div>
+        <div class="exp-title">Louange & Adoration</div>
+        <div class="exp-desc">Des moments de worship qui t'élèvent et te connectent au cœur de Dieu.</div>
+      </div>
+      <div class="exp-card exp-2 anim-up" style="transition-delay:.2s">
+        <div class="exp-icon"><span class="material-icons-round mi">menu_book</span></div>
+        <div class="exp-title">Enseignements Bibliques</div>
+        <div class="exp-desc">Des messages puissants par des serviteurs de Dieu anoints et inspirés.</div>
+      </div>
+      <div class="exp-card exp-3 anim-up" style="transition-delay:.3s">
+        <div class="exp-icon"><span class="material-icons-round mi">diversity_3</span></div>
+        <div class="exp-title">Communion Fraternelle</div>
+        <div class="exp-desc">Crée des liens profonds avec une famille spirituelle de tout le pays.</div>
+      </div>
+      <div class="exp-card exp-4 anim-up" style="transition-delay:.4s">
+        <div class="exp-icon"><span class="material-icons-round mi">celebration</span></div>
+        <div class="exp-title">Activités & Animations</div>
+        <div class="exp-desc">Jeux, ateliers, sorties et moments de joie entre jeunes croyants.</div>
+      </div>
+      <div class="exp-card exp-5 anim-up" style="transition-delay:.5s">
+        <div class="exp-icon"><span class="material-icons-round mi">volunteer_activism</span></div>
+        <div class="exp-title">Temps de Prière</div>
+        <div class="exp-desc">Des veillées et intercessions qui brisent les chaînes et libèrent les destins.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PAYMENT
+     ================================================================ -->
+<section id="payment" class="section">
+  <div class="container">
+    <div class="center">
+      <span class="section-label label-red anim-up">
+        <span class="material-icons-round" style="font-size:.85rem;vertical-align:middle">payments</span>
+        Inscription
+      </span>
+      <h2 class="section-title anim-up" style="transition-delay:.1s">
+        Réserve ta <span style="color:var(--green)">participation</span>
+      </h2>
+      <p class="section-sub center anim-up" style="transition-delay:.2s">
+        Paiement simple et rapide via mobile money.
+        En quelques minutes, ta place est confirmée.
+      </p>
+    </div>
+
+    <div class="payment-top anim-up" style="transition-delay:.3s">
+      <div class="pay-card pay-amana">
+        <div class="pay-logo"><span class="material-icons-round">account_balance_wallet</span></div>
+        <div class="pay-name">AMANA</div>
+        <p style="font-size:.8rem;color:var(--gray-dark);margin-bottom:8px">Paiement via Amana Mobile Money</p>
+        <div class="pay-field">
+          <div class="pay-field-label">Numéro Amana</div>
+          <div class="pay-field-val">[NUMERO_AMANA]</div>
+        </div>
+        <div class="pay-field">
+          <div class="pay-field-label">Bénéficiaire</div>
+          <div class="pay-field-val">[NOM_BENEFICIAIRE]</div>
+        </div>
+      </div>
+      <div class="pay-card pay-nita">
+        <div class="pay-logo"><span class="material-icons-round">credit_card</span></div>
+        <div class="pay-name">NITA</div>
+        <p style="font-size:.8rem;color:var(--gray-dark);margin-bottom:8px">Paiement via NITA Mobile</p>
+        <div class="pay-field">
+          <div class="pay-field-label">Numéro NITA</div>
+          <div class="pay-field-val">[NUMERO_NITA]</div>
+        </div>
+        <div class="pay-field">
+          <div class="pay-field-label">Bénéficiaire</div>
+          <div class="pay-field-val">[NOM_BENEFICIAIRE]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="center" style="margin:28px 0 14px">
+      <span class="section-label label-green">Comment payer — 4 étapes</span>
+    </div>
+    <div class="steps-row anim-up">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-text">Ouvre<br><strong>Amana ou NITA</strong></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-text">Envoie au<br><strong>numéro indiqué</strong></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-text">Garde la<br><strong>preuve de paiement</strong></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-text">Finalise via<br><strong>WhatsApp</strong></div>
+      </div>
+    </div>
+
+    <div class="center anim-up" style="margin-top:28px">
+      <a href="https://wa.me/00000000000" target="_blank" class="btn btn-wa">
+        <span class="material-icons-round" style="font-size:1.1rem">chat</span>
+        Contacter sur WhatsApp pour finaliser
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     TESTIMONIALS
+     ================================================================ -->
+<section id="testimonials">
+  <div class="container center test-header">
+    <span class="section-label anim-up" style="color:var(--yellow)">
+      <span class="material-icons-round" style="font-size:.85rem;vertical-align:middle">format_quote</span>
+      Témoignages
+    </span>
+    <h2 class="section-title anim-up" style="transition-delay:.1s;color:#fff">
+      Ils y étaient.<br><span style="color:var(--yellow)">Ils témoignent.</span>
+    </h2>
+  </div>
+  <div class="test-track-wrap anim-in" style="transition-delay:.3s">
+    <div class="test-track" id="test-track"></div>
+  </div>
+</section>
+
+<!-- ================================================================
+     GALLERY
+     ================================================================ -->
+<section id="gallery" class="section">
+  <div class="container">
+    <div class="center">
+      <span class="section-label label-red anim-up">
+        <span class="material-icons-round" style="font-size:.85rem;vertical-align:middle">photo_library</span>
+        Galerie
+      </span>
+      <h2 class="section-title anim-up" style="transition-delay:.1s">
+        Des souvenirs qui <span style="color:var(--green)">parlent</span>
+      </h2>
+    </div>
+    <div class="gallery-grid anim-in" style="transition-delay:.3s">
+      <div class="gal-item" onclick="openLb('assets/gallery6.jpg')">
+        <img src="assets/gallery6.jpg" alt="Camp 1" onerror="this.style.display='none'"/>
+        <div class="gal-placeholder">
+          <span class="material-icons-round">photo_camera</span>
+          <span>gallery1.jpg</span>
+        </div>
+      </div>
+      <div class="gal-item" onclick="openLb('assets/gallery7.jpg')">
+        <img src="assets/gallery7.jpg" alt="Camp 2" onerror="this.style.display='none'"/>
+        <div class="gal-placeholder">
+          <span class="material-icons-round">photo_camera</span>
+          <span>gallery2.jpg</span>
+        </div>
+      </div>
+      <div class="gal-item" onclick="openLb('assets/gallery8.jpg')">
+        <img src="assets/gallery8.jpg" alt="Camp 3" onerror="this.style.display='none'"/>
+        <div class="gal-placeholder">
+          <span class="material-icons-round">photo_camera</span>
+          <span>gallery3.jpg</span>
+        </div>
+      </div>
+      <div class="gal-item" onclick="openLb('assets/gallery9.jpg')">
+        <img src="assets/gallery9.jpg" alt="Camp 4" onerror="this.style.display='none'"/>
+        <div class="gal-placeholder">
+          <span class="material-icons-round">photo_camera</span>
+          <span>gallery4.jpg</span>
+        </div>
+      </div>
+      <div class="gal-item" onclick="openLb('assets/gallery10.jpg')">
+        <img src="assets/gallery10.jpg" alt="Camp 5" onerror="this.style.display='none'"/>
+        <div class="gal-placeholder">
+          <span class="material-icons-round">photo_camera</span>
+          <span>gallery5.jpg</span>
+        </div>
+      </div>
+      <div class="gal-item" onclick="openLb('assets/gallery11.jpg')">
+        <img src="assets/gallery11.jpg" alt="Camp 6" onerror="this.style.display='none'"/>
+        <div class="gal-placeholder">
+          <span class="material-icons-round">photo_camera</span>
+          <span>gallery6.jpg</span>
+        </div>
+        <div class="gal-overlay"><span>Adoration collective</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FAQ
+     ================================================================ -->
+<section id="faq" class="section">
+  <div class="container center">
+    <span class="section-label label-red anim-up">
+      <span class="material-icons-round" style="font-size:.85rem;vertical-align:middle">help_outline</span>
+      Questions
+    </span>
+    <h2 class="section-title anim-up" style="transition-delay:.1s">
+      Foire aux <span style="color:var(--green)">questions</span>
+    </h2>
+  </div>
+  <div class="faq-list anim-up" style="transition-delay:.2s">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Qui peut participer ?
+        <span class="faq-icon"><span class="material-icons-round mi">add</span></span>
+      </div>
+      <div class="faq-a">Le Camp Biblique UJEEBN 2026 est ouvert à toute la jeunesse chrétienne sans distinction d'église ou de dénomination. Que tu aies 15 ou 35 ans, tu es le bienvenu(e) ! L'essentiel est un cœur ouvert.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Comment se préinscrire ?
+        <span class="faq-icon"><span class="material-icons-round mi">add</span></span>
+      </div>
+      <div class="faq-a">Effectue ton paiement via Amana ou NITA aux coordonnées indiquées, garde ta preuve de transaction, puis contacte-nous sur WhatsApp pour finaliser. Simple, rapide, sécurisé.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Comment payer ?
+        <span class="faq-icon"><span class="material-icons-round mi">add</span></span>
+      </div>
+      <div class="faq-a">Deux options : Amana Mobile Money ou NITA. Envoie le montant au numéro indiqué, mets ton nom en référence, fais une capture de la confirmation, puis contacte l'équipe sur WhatsApp.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Puis-je inviter mes amis ?
+        <span class="faq-icon"><span class="material-icons-round mi">add</span></span>
+      </div>
+      <div class="faq-a">Absolument ! Partage cette page, génère ton flyer "Je serai là" et invite le plus de monde possible. Plus on est nombreux, plus la bénédiction sera grande. Sois un ambassadeur du camp !</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Dois-je partager mon flyer ?
+        <span class="faq-icon"><span class="material-icons-round mi">add</span></span>
+      </div>
+      <div class="faq-a">C'est fortement encouragé ! Le flyer personnalisé est une manière puissante de témoigner et d'inviter ta communauté. Partage sur WhatsApp, Facebook, Instagram et TikTok pour mobiliser un maximum de jeunes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FINAL CTA
+     ================================================================ -->
+<section id="final-cta">
+  <div class="container anim-up">
+    <div class="final-eyebrow">
+      <span class="material-icons-round" style="font-size:.85rem">star</span>
+      L'appel final
+    </div>
+    <h2 class="final-title">
+      Le monde a besoin<br>
+      de jeunes qui <span class="y">brillent</span><br>
+      pour <span class="r">Christ</span>
+    </h2>
+    <p class="final-text">
+      Cette édition n'est pas juste un événement.<br>
+      C'est un rendez-vous spirituel.<br>
+      Ta génération est appelée. Réponds à l'appel.
+    </p>
+    <div class="final-btns">
+      <a href="#payment" class="btn btn-yellow">
+        <span class="material-icons-round" style="font-size:1.1rem">how_to_reg</span>
+        Je me préinscris maintenant
+      </a>
+      <a href="#flyer" class="btn btn-red">
+        <span class="material-icons-round" style="font-size:1.1rem">image</span>
+        Créer mon flyer
+      </a>
+      <a href="https://wa.me/00000000000" class="btn btn-wa" target="_blank">
+        <span class="material-icons-round" style="font-size:1.1rem">chat</span>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo-txt">
+          CAMP<span class="y"> BIBLIQUE</span><br>
+          <span class="r">UJEEBN</span><span class="g"> 2026</span>
+        </div>
+        <p class="footer-desc">
+          36ème édition • Dosso, Niger<br>
+          02 — 07 Août 2026<br>
+          "Témoigne du Christ par ta vie" — Mat. 5:14-16
+        </p>
+        <div class="footer-social">
+          <div class="f-soc" title="Facebook"><span class="material-icons-round mi">facebook</span></div>
+          <div class="f-soc" title="Instagram"><span class="material-icons-round mi">photo_camera</span></div>
+          <div class="f-soc" title="TikTok"><span class="material-icons-round mi">music_note</span></div>
+          <div class="f-soc" title="WhatsApp"><span class="material-icons-round mi">chat</span></div>
+          <div class="f-soc" title="YouTube"><span class="material-icons-round mi">play_circle</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Liens rapides</div>
+        <div class="footer-links">
+          <a href="#hero" class="footer-link">Accueil</a>
+          <a href="#countdown" class="footer-link">Compte à rebours</a>
+          <a href="#experience" class="footer-link">Programme</a>
+          <a href="#payment" class="footer-link">Préinscription</a>
+          <a href="#gallery" class="footer-link">Galerie</a>
+          <a href="#faq" class="footer-link">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-links">
+          <span class="footer-link">💬 WhatsApp</span>
+          <span class="footer-link">✉️ contact@ujeebn.ne</span>
+          <span class="footer-link">📍 Dosso, Niger</span>
+          <span class="footer-link">📅 02–07 Août 2026</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Camp Biblique UJEEBN — 36ème Édition. Tous droits réservés.</p>
+      <p style="margin-top:6px"><span>"Vous êtes la lumière du monde." — Matthieu 5:14</span></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
+<script>
+/* ---- NAV ---- */
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', scrollY > 60));
+
+/* ---- SCROLL OBSERVER ---- */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .12 });
+document.querySelectorAll('.anim-up,.anim-in,.anim-left,.anim-right').forEach(el => obs.observe(el));
+
+/* ---- CAROUSEL ---- */
+const slides = [
+  { img:'assets/gallery1.jpg', quote:'&quot;Ces 6 jours ont changé ma vie pour toujours. J\'y ai rencontré Dieu personnellement.&quot;', author:'— Amadou K., 35ème édition' },
+  { img:'assets/gallery2.jpg', quote:'&quot;La louange était tellement puissante que j\'ai pleuré des larmes de joie. Dieu était là.&quot;', author:'— Mariama S., 34ème édition' },
+  { img:'assets/gallery3.jpg', quote:'&quot;C\'est là que j\'ai reçu la vision de mon ministère. Ce camp m\'a révélé mon identité en Christ.&quot;', author:'— Ibrahim T., 33ème édition' },
+  { img:'assets/gallery4.jpg', quote:'&quot;Une fraternité authentique entre jeunes de tout le Niger. Des liens créés pour la vie.&quot;', author:'— Fatima L., 35ème édition' },
+  { img:'assets/gallery5.jpg', quote:'&quot;Les enseignements étaient profonds et pratiques. Mon rapport à la Parole n\'est plus le même.&quot;', author:'— Moussa D., 34ème édition' },
+];
+let curSlide = 0, carouselTimer;
+const carouselEl = document.getElementById('carousel');
+const dotsEl = document.getElementById('carousel-dots');
+
+// Build slides
+slides.forEach((s, i) => {
+  const div = document.createElement('div');
+  div.className = 'hero-slide' + (i===0?' active':'');
+  div.innerHTML = `
+    <img src="${s.img}" alt="Camp ${i+1}" onerror="this.style.background='#222';this.style.minHeight='100%'"/>
+    <div class="hero-slide-overlay">
+      <p class="hero-slide-quote">${s.quote}</p>
+      <div class="hero-slide-author">${s.author}</div>
+    </div>`;
+  carouselEl.appendChild(div);
+
+  const dot = document.createElement('div');
+  dot.className = 'carousel-dot'+(i===0?' active':'');
+  dot.onclick = () => goSlide(i);
+  dotsEl.appendChild(dot);
+});
+
+function goSlide(n) {
+  document.querySelectorAll('.hero-slide')[curSlide].classList.remove('active');
+  document.querySelectorAll('.carousel-dot')[curSlide].classList.remove('active');
+  curSlide = (n + slides.length) % slides.length;
+  document.querySelectorAll('.hero-slide')[curSlide].classList.add('active');
+  document.querySelectorAll('.carousel-dot')[curSlide].classList.add('active');
+  resetCarouselTimer();
+}
+function carouselNext(){ goSlide(curSlide+1); }
+function carouselPrev(){ goSlide(curSlide-1); }
+function resetCarouselTimer(){ clearInterval(carouselTimer); carouselTimer = setInterval(carouselNext, 5000); }
+// Pause on hover
+document.getElementById('hero-right').addEventListener('mouseenter', () => clearInterval(carouselTimer));
+document.getElementById('hero-right').addEventListener('mouseleave', resetCarouselTimer);
+resetCarouselTimer();
+
+/* ---- FLIP CLOCK ---- */
+const TARGET = new Date('2026-08-02T00:00:00').getTime();
+const units = [
+  { id:'days',  prev:null },
+  { id:'hours', prev:null },
+  { id:'mins',  prev:null },
+  { id:'secs',  prev:null },
+];
+
+function pad(n){ return String(n).padStart(2,'0'); }
+
+function flipUnit(id, val) {
+  const vStr = pad(val);
+  // Static faces
+  document.getElementById(`fct-${id}-top`).textContent = vStr;
+  document.getElementById(`fct-${id}-bot`).textContent = vStr;
+  document.getElementById(`fcb-${id}-top`).textContent = vStr;
+  document.getElementById(`fcb-${id}-bot`).textContent = vStr;
+}
+
+function triggerFlip(id, newVal) {
+  const fold = document.getElementById(`ff-${id}`);
+  const span = document.getElementById(`fff-${id}`);
+  span.textContent = pad(newVal);
+  fold.classList.remove('flipping');
+  void fold.offsetWidth; // reflow
+  fold.classList.add('flipping');
+  setTimeout(() => {
+    flipUnit(id, newVal);
+  }, 225);
+}
+
+function tick() {
+  const now = Date.now();
+  const diff = Math.max(0, TARGET - now);
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const vals = [d, h, m, s];
+  const ids   = ['days','hours','mins','secs'];
+
+  ids.forEach((id, i) => {
+    const u = units[i];
+    if (u.prev !== vals[i]) {
+      triggerFlip(id, vals[i]);
+      u.prev = vals[i];
+    }
+  });
+}
+// Init
+tick();
+setInterval(tick, 1000);
+
+/* ---- TESTIMONIALS ---- */
+const testimonials = [
+  { text:'Ces 6 jours ont changé ma vie pour toujours. J\'y ai rencontré Dieu personnellement.', name:'Amadou K.', role:'35ème édition', init:'A' },
+  { text:'La louange était tellement puissante — Dieu était vraiment présent parmi nous.', name:'Mariama S.', role:'34ème édition', init:'M' },
+  { text:'La communion entre jeunes croyants de tout le Niger... quelque chose de rare et précieux.', name:'Ibrahim T.', role:'33ème édition', init:'I' },
+  { text:'C\'est là que j\'ai reçu la vision de mon ministère. Je recommande ce camp à tous.', name:'Fatima L.', role:'35ème édition', init:'F' },
+  { text:'Les enseignements étaient profonds et pratiques. Mon rapport à la Parole n\'est plus le même.', name:'Moussa D.', role:'34ème édition', init:'M' },
+  { text:'J\'ai rencontré des frères et sœurs qui sont devenus ma famille spirituelle à vie.', name:'Rakia B.', role:'35ème édition', init:'R' },
+];
+const track = document.getElementById('test-track');
+[...testimonials, ...testimonials].forEach(t => {
+  const c = document.createElement('div');
+  c.className = 'test-card';
+  c.innerHTML = `
+    <div class="test-stars">
+      <span class="material-icons-round mi">star</span>
+      <span class="material-icons-round mi">star</span>
+      <span class="material-icons-round mi">star</span>
+      <span class="material-icons-round mi">star</span>
+      <span class="material-icons-round mi">star</span>
+    </div>
+    <p class="test-text">"${t.text}"</p>
+    <div class="test-author">
+      <div class="test-av">${t.init}</div>
+      <div>
+        <div class="test-name">${t.name}</div>
+        <div class="test-role">${t.role}</div>
+      </div>
+    </div>`;
+  track.appendChild(c);
+});
+
+/* ---- LIGHTBOX ---- */
+function openLb(src) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', e => { if(e.target===document.getElementById('lightbox'))closeLb(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape')closeLb(); });
+
+/* ---- FAQ ---- */
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ---- SMOOTH SCROLL ---- */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  });
+});
+</script>
+</body>
+</html>
