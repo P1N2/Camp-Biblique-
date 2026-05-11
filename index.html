@@ -804,7 +804,7 @@ footer{
   display:grid;grid-template-columns:2fr 1fr 1fr;
   gap:40px;margin-bottom:48px;
 }
-.footer-brand .nav-logo-txt{font-size:1.8rem;margin-bottom:10px}
+.footer-brand .nav-logo-txt{font-size:1.8rem;margin-bottom:10px; color: white}
 .footer-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:20px}
 .footer-social{display:flex;gap:10px}
 .f-soc{
@@ -936,7 +936,7 @@ footer{
           <span class="material-icons-round" style="font-size:1.1rem">how_to_reg</span>
           Je me préinscris
         </a>
-        <a href="#flyer" class="btn btn-black">
+        <a href="flyer.html" class="btn btn-black">
           <span class="material-icons-round" style="font-size:1.1rem">image</span>
           Mon flyer "Je serai là"
         </a>
@@ -1163,11 +1163,11 @@ footer{
         et partage-le partout. Montre à ta communauté que tu seras là !
       </p>
 
-      <div class="dev-note">
-        <strong>🛠️ Note développeur :</strong> Le générateur de flyer sera intégré ici après réception
+      <!-- <div class="dev-note">
+        <strong>Note développeur :</strong> Le générateur de flyer sera intégré ici après réception
         du template officiel fourni par l'organisateur. L'interface est prête — il ne reste qu'à brancher
         la logique de composition d'image (canvas / backend).
-      </div>
+      </div> -->
 
       <div class="flyer-steps">
         <div class="flyer-step">
@@ -1187,11 +1187,12 @@ footer{
           <div class="flyer-step-text">Télécharge & partage partout !</div>
         </div>
       </div>
-
-      <button class="btn btn-black" onclick="alert('Le générateur de flyer sera bientôt disponible ! Revenez très bientôt. 🔥')" style="font-size:1rem;padding:16px 36px;">
+      <a href="flyer.html">
+      <button class="btn btn-black" 
+      style="font-size:1rem;padding:16px 36px;">
         <span class="material-icons-round" style="font-size:1.2rem">add_photo_alternate</span>
-        Générer mon flyer — Bientôt disponible
-      </button>
+         Générer mon flyer 
+      </button></a>
     </div>
   </div>
 </section>
@@ -1257,6 +1258,7 @@ footer{
         Réserve ta <span style="color:var(--green)">participation</span>
       </h2>
       <p class="section-sub center anim-up" style="transition-delay:.2s">
+        Inscription rapide en 1mn via le formulaire.
         Paiement simple et rapide via mobile money.
         En quelques minutes, ta place est confirmée.
       </p>
@@ -1266,38 +1268,39 @@ footer{
       <div class="pay-card pay-amana">
         <div class="pay-logo"><span class="material-icons-round">account_balance_wallet</span></div>
         <div class="pay-name">AMANA</div>
-        <p style="font-size:.8rem;color:var(--gray-dark);margin-bottom:8px">Paiement via Amana Mobile Money</p>
+        <p style="font-size:.8rem;color:var(--gray-dark);margin-bottom:8px">Paiement l'application Amana</p>
         <div class="pay-field">
           <div class="pay-field-label">Numéro Amana</div>
-          <div class="pay-field-val">[NUMERO_AMANA]</div>
+          <div class="pay-field-val">+227 000000</div>
         </div>
         <div class="pay-field">
           <div class="pay-field-label">Bénéficiaire</div>
-          <div class="pay-field-val">[NOM_BENEFICIAIRE]</div>
+          <div class="pay-field-val">Lorem Ipsum</div>
         </div>
       </div>
       <div class="pay-card pay-nita">
         <div class="pay-logo"><span class="material-icons-round">credit_card</span></div>
         <div class="pay-name">NITA</div>
-        <p style="font-size:.8rem;color:var(--gray-dark);margin-bottom:8px">Paiement via NITA Mobile</p>
+        <p style="font-size:.8rem;color:var(--gray-dark);margin-bottom:8px">Paiement via MyNITA </p>
         <div class="pay-field">
           <div class="pay-field-label">Numéro NITA</div>
-          <div class="pay-field-val">[NUMERO_NITA]</div>
+          <div class="pay-field-val">+227 000000</div>
         </div>
         <div class="pay-field">
           <div class="pay-field-label">Bénéficiaire</div>
-          <div class="pay-field-val">[NOM_BENEFICIAIRE]</div>
+          <div class="pay-field-val">Lorem Ipsum</div>
         </div>
       </div>
     </div>
 
     <div class="center" style="margin:28px 0 14px">
-      <span class="section-label label-green">Comment payer — 4 étapes</span>
+      <span class="section-label label-green">Comment payer Et s'enrgistrer en 5 étapes </span>
     </div>
     <div class="steps-row anim-up">
       <div class="step-item">
         <div class="step-num">1</div>
-        <div class="step-text">Ouvre<br><strong>Amana ou NITA</strong></div>
+        <div class="step-text">Clique sur le Boutton<br><strong>Remplir le formulaire</strong></div>
+        <div class="step-text"> Puis Ouvre<br><strong>Amana ou NITA</strong></div>
       </div>
       <div class="step-item">
         <div class="step-num">2</div>
@@ -1313,12 +1316,28 @@ footer{
       </div>
     </div>
 
-    <div class="center anim-up" style="margin-top:28px">
-      <a href="https://wa.me/00000000000" target="_blank" class="btn btn-wa">
-        <span class="material-icons-round" style="font-size:1.1rem">chat</span>
-        Contacter sur WhatsApp pour finaliser
+    <!-- DEUX BOUTONS CÔTE À CÔTE AVEC ICÔNES GOOGLE -->
+    <div class="center anim-up" style="margin-top:28px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://forms.gle/Ros3ubfVgmNQnxEb7" target="_blank" class="btn" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: all 0.3s;">
+        <span class="material-icons-round">assignment</span>
+        Remplir le formulaire
+      </a>
+      <a href="https://wa.me/22790129704?text=Bonjour%20je%20souhaite%20confimer%20mon%20inscription%20au%20CAMP%20BIBLIQUE%20UJEEBN%202026" target="_blank" class="btn btn-wa" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 50px; font-weight: 700; text-decoration: none;">
+        <span class="material-icons-round">chat</span>
+        Finaliser sur WhatsApp
       </a>
     </div>
+    
+    <!-- Message d'information
+    <div class="center anim-up" style="margin-top: 20px;">
+      <p style="font-size: 0.85rem; color: var(--gray-dk); display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;">
+        <span class="material-icons-round" style="font-size: 1rem;">info</span>
+        ⚡ Étapes : 
+        <span style="font-weight: 700;">1️⃣ Formulaire</span> → 
+        <span style="font-weight: 700;">2️⃣ Paiement</span> → 
+        <span style="font-weight: 700;">3️⃣ Confirmation WhatsApp</span>
+      </p>
+    </div> -->
   </div>
 </section>
 
@@ -1506,13 +1525,13 @@ footer{
           02 — 07 Août 2026<br>
           "Témoigne du Christ par ta vie" — Mat. 5:14-16
         </p>
-        <div class="footer-social">
+        <!-- <div class="footer-social">
           <div class="f-soc" title="Facebook"><span class="material-icons-round mi">facebook</span></div>
           <div class="f-soc" title="Instagram"><span class="material-icons-round mi">photo_camera</span></div>
           <div class="f-soc" title="TikTok"><span class="material-icons-round mi">music_note</span></div>
           <div class="f-soc" title="WhatsApp"><span class="material-icons-round mi">chat</span></div>
           <div class="f-soc" title="YouTube"><span class="material-icons-round mi">play_circle</span></div>
-        </div>
+        </div> -->
       </div>
       <div>
         <div class="footer-col-title">Liens rapides</div>
@@ -1528,10 +1547,10 @@ footer{
       <div>
         <div class="footer-col-title">Contact</div>
         <div class="footer-links">
-          <span class="footer-link">💬 WhatsApp</span>
-          <span class="footer-link">✉️ contact@ujeebn.ne</span>
-          <span class="footer-link">📍 Dosso, Niger</span>
-          <span class="footer-link">📅 02–07 Août 2026</span>
+          <span class="footer-link">WhatsApp</span>
+          <span class="footer-link">contact@ujeebn.ne</span>
+          <span class="footer-link">Dosso, Niger</span>
+          <span class="footer-link">02–07 Août 2026</span>
         </div>
       </div>
     </div>
@@ -1540,6 +1559,7 @@ footer{
       <p style="margin-top:6px"><span>"Vous êtes la lumière du monde." — Matthieu 5:14</span></p>
     </div>
   </div>
+  <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore. </p>
 </footer>
 
 <!-- ================================================================
@@ -1558,10 +1578,10 @@ document.querySelectorAll('.anim-up,.anim-in,.anim-left,.anim-right').forEach(el
 
 /* ---- CAROUSEL ---- */
 const slides = [
-  { img:'assets/gallery1.jpg', quote:'&quot;Ces 6 jours ont changé ma vie pour toujours. J\'y ai rencontré Dieu personnellement.&quot;', author:'— Amadou K., 35ème édition' },
-  { img:'assets/gallery2.jpg', quote:'&quot;La louange était tellement puissante que j\'ai pleuré des larmes de joie. Dieu était là.&quot;', author:'— Mariama S., 34ème édition' },
-  { img:'assets/gallery3.jpg', quote:'&quot;C\'est là que j\'ai reçu la vision de mon ministère. Ce camp m\'a révélé mon identité en Christ.&quot;', author:'— Ibrahim T., 33ème édition' },
-  { img:'assets/gallery4.jpg', quote:'&quot;Une fraternité authentique entre jeunes de tout le Niger. Des liens créés pour la vie.&quot;', author:'— Fatima L., 35ème édition' },
+  { img:'assets/gallery1.jpg', quote:'&quot;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore. &quot;', author:'Lorem Ipsum' },
+  { img:'assets/gallery2.jpg', quote:'&quot;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore. &quot;', author:'Lorem Ipsum'  },
+  { img:'assets/gallery3.jpg', quote:'&quot;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore. &quot;', author:'Lorem Ipsum'  },
+  { img:'assets/gallery4.jpg', quote:'&quot;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore. &quot;', author:'Lorem Ipsum' },
   { img:'assets/gallery5.jpg', quote:'&quot;Les enseignements étaient profonds et pratiques. Mon rapport à la Parole n\'est plus le même.&quot;', author:'— Moussa D., 34ème édition' },
 ];
 let curSlide = 0, carouselTimer;
@@ -1658,12 +1678,12 @@ setInterval(tick, 1000);
 
 /* ---- TESTIMONIALS ---- */
 const testimonials = [
-  { text:'Ces 6 jours ont changé ma vie pour toujours. J\'y ai rencontré Dieu personnellement.', name:'Amadou K.', role:'35ème édition', init:'A' },
-  { text:'La louange était tellement puissante — Dieu était vraiment présent parmi nous.', name:'Mariama S.', role:'34ème édition', init:'M' },
-  { text:'La communion entre jeunes croyants de tout le Niger... quelque chose de rare et précieux.', name:'Ibrahim T.', role:'33ème édition', init:'I' },
-  { text:'C\'est là que j\'ai reçu la vision de mon ministère. Je recommande ce camp à tous.', name:'Fatima L.', role:'35ème édition', init:'F' },
-  { text:'Les enseignements étaient profonds et pratiques. Mon rapport à la Parole n\'est plus le même.', name:'Moussa D.', role:'34ème édition', init:'M' },
-  { text:'J\'ai rencontré des frères et sœurs qui sont devenus ma famille spirituelle à vie.', name:'Rakia B.', role:'35ème édition', init:'R' },
+  { text:'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore.', name:'Lorem Ipsum.', role:'Lorem Ipsum', init:'A' },
+  { text:'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore.', name:'Lorem Ipsum.', role:'Lorem Ipsum', init:'M' },
+  { text:'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore.', name:'Lorem Ipsum.', role:'Lorem Ipsum', init:'I' },
+  { text:'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore.', name:'Lorem Ipsum.', role:'Lorem Ipsum', init:'F' },
+  { text:'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore.', name:'Lorem Ipsum.', role:'Lorem Ipsum', init:'M' },
+  { text:'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, inventore.', name:'Lorem Ipsum.', role:'Lorem Ipsum', init:'R' },
 ];
 const track = document.getElementById('test-track');
 [...testimonials, ...testimonials].forEach(t => {

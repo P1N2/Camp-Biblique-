@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Générateur de Flyer — Camp Biblique UJEEBN 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+<style>
+:root{
+  --white:#ffffff;--yellow:#f6d400;--black:#111111;
+  --red:#e30621;--green:#199556;
+  --gray:#f5f5f5;--gray-mid:#e0e0e0;--gray-dk:#666;
+  --shadow:0 4px 24px rgba(0,0,0,.1);
+  --shadow-lg:0 12px 48px rgba(0,0,0,.16);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* FOND CHIC POUR LA PAGE (AUTOUR DU FLYER) */
+body{
+  font-family:"Outfit",sans-serif;
+  color:var(--black);
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  background-image: url('assets/fond.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  background-color: #1a1a2e;
+}
+
+/* Voile sombre pour la lisibilité */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  z-index: -1;
+}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--gray)}
+::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:99px}
+.mi{font-family:"Material Icons Round";font-size:1.1em;vertical-align:middle;line-height:1}
+
+/* NAV */
+nav{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:3px solid var(--yellow);padding:14px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.07)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:min(96%,1160px);margin-inline:auto}
+.nav-logo{font-family:"Bebas Neue",sans-serif;font-size:1.45rem;letter-spacing:.06em;line-height:1}
+.nav-logo .y{color:var(--yellow)}.nav-logo .r{color:var(--red)}.nav-logo .g{color:var(--green)}
+.nav-back{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:6px;background:var(--black);color:var(--white);font-size:.85rem;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s}
+.nav-back:hover{background:#333}
+
+/* PAGE HEADER */
+.page-header{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--gray-mid);padding:36px 0 30px;text-align:center;position:relative;overflow:hidden}
+.page-header::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(246,212,0,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(246,212,0,.12) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.page-header::after{content:"";position:absolute;top:0;left:0;bottom:0;width:5px;background:linear-gradient(to bottom,var(--yellow),var(--red),var(--green))}
+.header-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 16px;border-radius:4px;background:var(--yellow);color:var(--black);font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+.header-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:.03em;line-height:1.05;margin-bottom:8px}
+.header-title .r{color:var(--red)}.header-title .y{color:var(--yellow)}
+.header-sub{font-size:.95rem;color:var(--gray-dk);max-width:480px;margin:0 auto;line-height:1.6}
+
+/* LAYOUT */
+.main{width:min(96%,1160px);margin:30px auto;display:grid;grid-template-columns:1fr 400px;gap:24px;align-items:start}
+
+/* CANVAS */
+.canvas-wrapper{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:16px;padding:20px;box-shadow:var(--shadow-lg);border:1px solid var(--gray-mid)}
+.canvas-label{display:flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gray-dk);margin-bottom:12px}
+.canvas-label .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(25,149,86,.2);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 3px rgba(25,149,86,.2)}50%{box-shadow:0 0 0 7px rgba(25,149,86,.08)}}
+#flyer-container{position:relative;width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:transparent;box-shadow:0 8px 36px rgba(0,0,0,.3)}
+#flyer-canvas{position:absolute;top:0;left:0;width:100%!important;height:100%!important;touch-action:none}
+.canvas-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(255,255,255,.3);pointer-events:none;z-index:0;transition:opacity .4s}
+.canvas-placeholder.hidden{opacity:0}
+.canvas-placeholder .mi{font-size:2.8rem;display:block}
+.canvas-placeholder p{font-size:.82rem;font-weight:600}
+
+/* BUTTONS */
+.dl-btn{display:none;width:100%;margin-top:16px;padding:14px 24px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--yellow),#e8c200);color:var(--black);font-family:"Outfit",sans-serif;font-size:1rem;font-weight:800;cursor:pointer;letter-spacing:.04em;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 18px rgba(246,212,0,.4);transition:all .25s ease}
+.dl-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(246,212,0,.55)}
+.dl-btn.visible{display:flex}
+.share-row{display:none;margin-top:12px;gap:10px;flex-wrap:wrap}
+.share-row.visible{display:flex}
+.share-btn{flex:1;min-width:120px;padding:11px 14px;border-radius:8px;border:none;font-family:"Outfit",sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .25s}
+.share-wa{background:#25d366;color:#fff}.share-wa:hover{background:#128c7e;transform:translateY(-2px)}
+.share-copy{background:var(--gray);color:var(--black);border:1.5px solid var(--gray-mid)}.share-copy:hover{background:var(--gray-mid)}
+
+/* PANEL */
+.panel{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:16px;box-shadow:var(--shadow-lg);border:1px solid var(--gray-mid);overflow:hidden}
+.panel-section{padding:20px 22px;border-bottom:1px solid var(--gray-mid)}
+.panel-section:last-child{border-bottom:none}
+.panel-section-title{font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gray-dk);display:flex;align-items:center;gap:6px;margin-bottom:14px}
+.panel-section-title .mi{font-size:1rem;color:var(--black)}
+
+/* DROPZONE */
+.dropzone{border:2.5px dashed var(--gray-mid);border-radius:10px;padding:24px 14px;text-align:center;cursor:pointer;transition:all .3s ease;background:var(--gray)}
+.dropzone:hover{border-color:var(--yellow);background:rgba(246,212,0,.06)}
+.dropzone.dragover{border-color:var(--yellow);background:rgba(246,212,0,.1)}
+.dropzone.loaded{border-style:solid;border-color:var(--green);background:rgba(25,149,86,.06)}
+.dropzone .mi{font-size:2rem;color:var(--gray-mid);display:block;margin-bottom:8px;transition:color .3s}
+.dropzone:hover .mi{color:var(--yellow)}.dropzone.loaded .mi{color:var(--green)}
+.dropzone-text{font-size:.83rem;font-weight:600;color:var(--gray-dk);line-height:1.5}
+.dropzone-text span{color:var(--red);font-weight:700}
+.dropzone-hint{font-size:.7rem;color:var(--gray-dk);margin-top:4px}
+#file-upload{display:none}
+.upload-success{display:flex;align-items:center;gap:10px;background:rgba(25,149,86,.08);border:1.5px solid rgba(25,149,86,.3);border-radius:8px;padding:10px 14px;font-size:.83rem;font-weight:600;color:var(--green)}
+
+/* CONTROLS */
+.ctrl-label{font-size:.8rem;font-weight:700;color:var(--black);display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.ctrl-val{font-size:.73rem;font-weight:600;color:var(--gray-dk);background:var(--gray);padding:2px 8px;border-radius:4px}
+.range-wrap{margin-bottom:14px}
+input[type=range]{width:100%;height:5px;-webkit-appearance:none;background:var(--gray-mid);border-radius:99px;cursor:pointer;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--yellow);border:2px solid var(--black);box-shadow:0 2px 8px rgba(246,212,0,.4);cursor:pointer;transition:transform .2s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
+.dir-grid{display:grid;grid-template-columns:repeat(3,40px);grid-template-rows:repeat(3,40px);gap:5px;justify-content:center;margin-bottom:14px}
+.dir-btn{width:40px;height:40px;border-radius:8px;background:var(--gray);border:1.5px solid var(--gray-mid);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;user-select:none}
+.dir-btn .mi{font-size:1.1rem;color:var(--black)}
+.dir-btn:hover{background:var(--yellow);border-color:var(--yellow)}
+.dir-btn:active{transform:scale(.9)}
+.shape-btns{display:flex;gap:8px}
+.shape-btn{flex:1;padding:10px;border-radius:8px;background:var(--gray);border:2px solid var(--gray-mid);font-family:"Outfit",sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
+.shape-btn.active{background:var(--yellow);border-color:var(--yellow);color:var(--black)}
+.shape-btn:hover:not(.active){border-color:var(--yellow)}
+.info-tip{display:flex;align-items:flex-start;gap:8px;background:rgba(246,212,0,.1);border:1.5px solid rgba(246,212,0,.35);border-radius:8px;padding:11px 13px;font-size:.76rem;color:rgba(0,0,0,.65);line-height:1.55;margin-top:12px}
+.info-tip .mi{font-size:.95rem;color:#b89d00;flex-shrink:0;margin-top:1px}
+.steps-guide{display:flex;flex-direction:column;gap:8px}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;background:var(--gray);border-radius:8px;border-left:3px solid transparent}
+.step-row:nth-child(1){border-left-color:var(--yellow)}.step-row:nth-child(2){border-left-color:var(--green)}.step-row:nth-child(3){border-left-color:var(--red)}.step-row:nth-child(4){border-left-color:var(--yellow)}
+.step-n{width:22px;height:22px;border-radius:50%;background:var(--black);color:var(--white);font-size:.68rem;font-weight:800;display:grid;place-items:center;flex-shrink:0;margin-top:2px}
+.step-text{font-size:.8rem;font-weight:600;line-height:1.5;color:var(--black)}
+.step-text small{color:var(--gray-dk);font-weight:400}
+
+/* RESPONSIVE */
+@media(max-width:860px){.main{grid-template-columns:1fr}.panel{order:-1}}
+@media(max-width:480px){.page-header{padding:22px 0 18px}.main{margin:16px auto;gap:14px}.canvas-wrapper,.panel{padding:14px}.panel-section{padding:14px 16px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">CAMP<span class="y"> BIBLIQUE</span><span class="r"> UJEEBN</span><span class="g"> 2026</span></div>
+    <a href="index.html" class="nav-back">
+      <span class="material-icons-round mi">arrow_back</span>
+      Retour au site
+    </a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="header-badge"><span class="material-icons-round" style="font-size:.85rem">add_photo_alternate</span> Générateur de flyer</div>
+  <h1 class="header-title">Crée ton flyer <span class="r">"J'y</span> <span class="y">serai</span><span class="r">"</span></h1>
+  <p class="header-sub">Uploade ta photo, positionne-la dans le cercle, télécharge et partage !</p>
+</div>
+
+<div class="main">
+
+  <!-- CANVAS -->
+  <div class="canvas-wrapper">
+    <div class="canvas-label"><span class="dot"></span> Aperçu en temps réel</div>
+    <div id="flyer-container">
+      <canvas id="flyer-canvas"></canvas>
+      <div class="canvas-placeholder" id="placeholder">
+        <span class="material-icons-round">person_add</span>
+        <p>Ton flyer apparaîtra ici</p>
+      </div>
+    </div>
+    <button class="dl-btn" id="dl-btn">
+      <span class="material-icons-round mi">download</span> Télécharger mon flyer (1080×1080)
+    </button>
+    <div class="share-row" id="share-row">
+      <button class="share-btn share-wa" onclick="shareWhatsapp()"><span class="material-icons-round mi">chat</span> Partager WhatsApp</button>
+      <button class="share-btn share-copy" onclick="copyLink()"><span class="material-icons-round mi">link</span> Copier le lien</button>
+    </div>
+  </div>
+
+  <!-- PANEL -->
+  <div class="panel">
+
+    <!-- Upload -->
+    <div class="panel-section">
+      <div class="panel-section-title"><span class="material-icons-round mi">upload</span> 1 — Ta photo</div>
+      <div class="dropzone" id="dropzone">
+        <span class="material-icons-round">add_a_photo</span>
+        <div class="dropzone-text"><span>Clique pour choisir</span> ou glisse ta photo ici</div>
+        <div class="dropzone-hint">PNG • JPEG • JPG — recommandé : carré</div>
+        <input type="file" id="file-upload" accept="image/*"/>
+      </div>
+      <div class="upload-success" id="upload-success" style="display:none;margin-top:10px">
+        <span class="material-icons-round mi">check_circle</span>
+        <span id="upload-filename">Photo chargée !</span>
+      </div>
+      <div class="info-tip"><span class="material-icons-round">lightbulb</span> Photo de face, bien éclairée, carrée de préférence.</div>
+    </div>
+
+    <!-- Shape -->
+    <div class="panel-section" id="section-shape" style="display:none">
+      <div class="panel-section-title"><span class="material-icons-round mi">crop</span> 2 — Forme du cadre</div>
+      <div class="shape-btns">
+        <button class="shape-btn active" id="shape-circle" onclick="setShape('circle')"><span class="material-icons-round mi">circle</span> Cercle</button>
+        <button class="shape-btn" id="shape-rect" onclick="setShape('rect')"><span class="material-icons-round mi">crop_square</span> Carré</button>
+      </div>
+    </div>
+
+    <!-- Position -->
+    <div class="panel-section" id="section-pos" style="display:none">
+      <div class="panel-section-title"><span class="material-icons-round mi">open_with</span> 3 — Position & Zoom</div>
+      <div class="range-wrap">
+        <div class="ctrl-label">Zoom <span class="ctrl-val" id="zoom-val">100%</span></div>
+        <input type="range" id="zoom" min="20" max="350" value="100"/>
+      </div>
+      <div class="ctrl-label" style="margin-bottom:8px">Déplacer la photo</div>
+      <div class="dir-grid">
+        <div></div>
+        <div class="dir-btn" id="mv-up"><span class="material-icons-round">keyboard_arrow_up</span></div>
+        <div></div>
+        <div class="dir-btn" id="mv-left"><span class="material-icons-round">keyboard_arrow_left</span></div>
+        <div></div>
+        <div class="dir-btn" id="mv-right"><span class="material-icons-round">keyboard_arrow_right</span></div>
+        <div></div>
+        <div class="dir-btn" id="mv-down"><span class="material-icons-round">keyboard_arrow_down</span></div>
+        <div></div>
+      </div>
+      <div class="range-wrap">
+        <div class="ctrl-label">Vitesse déplacement <span class="ctrl-val" id="step-val">20px</span></div>
+        <input type="range" id="step-size" min="5" max="80" value="20"/>
+      </div>
+    </div>
+
+    <!-- Guide -->
+    <div class="panel-section">
+      <div class="panel-section-title"><span class="material-icons-round mi">info</span> Comment faire ?</div>
+      <div class="steps-guide">
+        <div class="step-row"><div class="step-n">1</div><div class="step-text">Uploade ta photo<br><small>Clique sur la zone de dépôt ci-dessus</small></div></div>
+        <div class="step-row"><div class="step-n">2</div><div class="step-text">Choisis la forme du cadre<br><small>Cercle (comme le flyer original) ou carré</small></div></div>
+        <div class="step-row"><div class="step-n">3</div><div class="step-text">Ajuste position & zoom<br><small>Flèches ou glisse directement sur l'aperçu</small></div></div>
+        <div class="step-row"><div class="step-n">4</div><div class="step-text">Télécharge et partage !<br><small>WhatsApp, Facebook, Instagram, TikTok…</small></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer style="background:#1a1a2e;border-top:3px solid var(--yellow);padding:28px 0;text-align:center;margin-top:36px">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.06em;margin-bottom:6px;color:white">
+    CAMP <span style="color:#f6d400">BIBLIQUE</span> <span style="color:#e30621">UJEEBN</span> <span style="color:#199556">2026</span>
+  </div>
+  <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:20px">36ème édition • Dosso • 02—07 Août 2026</p>
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:30px;background:var(--yellow);color:var(--black);font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:800;text-decoration:none">
+    <span class="material-icons-round mi">arrow_back</span> Retour au site
+  </a>
+</footer>
+
+<script>
+(function(){
+  const EXPORT_SIZE = 1080;
+
+  // Position du cercle sur ton flyer
+  const CIRCLE_CX = 307.85;  // Centre X
+  const CIRCLE_CY = 475.15;  // Centre Y  
+  const CIRCLE_R  = 263.35;  // Rayon
+
+  const CIRCLE_CX_RATIO = CIRCLE_CX / EXPORT_SIZE;
+  const CIRCLE_CY_RATIO = CIRCLE_CY / EXPORT_SIZE;
+  const CIRCLE_R_RATIO  = CIRCLE_R / EXPORT_SIZE;
+
+  let userPhoto  = null;
+  let flyerFrame = null;
+  let backgroundImage = null;
+  let clipShape  = 'circle';
+  let moveStep   = 20;
+  let canvas;
+
+  const container = document.getElementById('flyer-container');
+
+  function getSize() { return container.offsetWidth || 480; }
+
+  function initCanvas() {
+    const sz = getSize();
+    if (canvas) {
+      canvas.setWidth(sz);
+      canvas.setHeight(sz);
+      canvas.renderAll();
+      return;
+    }
+    canvas = new fabric.Canvas('flyer-canvas', {
+      selection: false,
+      backgroundColor: 'transparent',
+      width: sz,
+      height: sz,
+      preserveObjectStacking: true,
+    });
+    loadBackground();
+    loadFlyer();
+  }
+
+  // Chargement du fond chic (dans le canvas)
+  function loadBackground() {
+    fabric.Image.fromURL('assets/fond.jpg', function(img) {
+      const sz = canvas.getWidth();
+      img.set({
+        left: 0, top: 0,
+        scaleX: sz / img.width,
+        scaleY: sz / img.height,
+        selectable: false,
+        evented: false,
+        hasControls: false,
+        hasBorders: false,
+      });
+      canvas.add(img);
+      backgroundImage = img;
+      canvas.sendToBack(backgroundImage);
+      canvas.renderAll();
+    }, function(err) {
+      console.error('Erreur chargement fond:', err);
+      // Silencieux, le fond n'est pas critique
+    });
+  }
+
+  // Chargement du flyer (doit être transparent)
+  function loadFlyer() {
+    fabric.Image.fromURL('Flyer.png', function(img) {
+      const sz = canvas.getWidth();
+      img.set({
+        left: 0, top: 0,
+        scaleX: sz / img.width,
+        scaleY: sz / img.height,
+        selectable: false,
+        evented: false,
+        hasControls: false,
+        hasBorders: false,
+      });
+      canvas.add(img);
+      flyerFrame = img;
+      canvas.renderAll();
+    }, function(err) {
+      console.error('Erreur:', err);
+      alert('Erreur: Impossible de charger l\'image du flyer. Vérifiez que "Flyer.png" est dans le dossier.');
+    });
+  }
+
+  function getClipPath(sz) {
+    const cx = sz * CIRCLE_CX_RATIO;
+    const cy = sz * CIRCLE_CY_RATIO;
+    const r  = sz * CIRCLE_R_RATIO;
+    
+    if (clipShape === 'circle') {
+      return new fabric.Circle({
+        radius: r,
+        left: cx - r,
+        top: cy - r,
+        absolutePositioned: true,
+      });
+    } else {
+      return new fabric.Rect({
+        width: r * 2, height: r * 2,
+        left: cx - r, top: cy - r,
+        rx: r * 0.1, ry: r * 0.1,
+        absolutePositioned: true,
+      });
+    }
+  }
+
+  function applyClipToPhoto(img) {
+    if (!img) return;
+    const sz = canvas.getWidth();
+    img.clipPath = getClipPath(sz);
+    canvas.renderAll();
+  }
+
+  function handleFile(file) {
+    if (!file || !file.type.match('image.*')) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      fabric.Image.fromURL(e.target.result, function(img) {
+        if (userPhoto) canvas.remove(userPhoto);
+
+        const sz = canvas.getWidth();
+        const cx = sz * CIRCLE_CX_RATIO;
+        const cy = sz * CIRCLE_CY_RATIO;
+        const r  = sz * CIRCLE_R_RATIO;
+
+        const diameter = r * 2;
+        const scale = diameter / Math.min(img.width, img.height);
+
+        img.set({
+          left: cx,
+          top: cy,
+          originX: 'center',
+          originY: 'center',
+          scaleX: scale,
+          scaleY: scale,
+          selectable: false,
+          evented: true,
+          hasControls: false,
+          hasBorders: false,
+          lockRotation: true,
+        });
+
+        canvas.add(img);
+        userPhoto = img;
+        applyClipToPhoto(userPhoto);
+
+        if (flyerFrame) canvas.bringToFront(flyerFrame);
+        if (backgroundImage) canvas.sendToBack(backgroundImage);
+
+        document.getElementById('placeholder').classList.add('hidden');
+        document.getElementById('upload-success').style.display = 'flex';
+        document.getElementById('upload-filename').textContent = '✓ ' + file.name;
+        document.getElementById('section-shape').style.display = 'block';
+        document.getElementById('section-pos').style.display = 'block';
+        document.getElementById('dl-btn').classList.add('visible');
+        document.getElementById('share-row').classList.add('visible');
+
+        document.getElementById('zoom').value = 100;
+        document.getElementById('zoom-val').textContent = '100%';
+
+        const dz = document.getElementById('dropzone');
+        dz.classList.add('loaded');
+        dz.querySelector('.dropzone-text').innerHTML =
+          '<span style="color:var(--green)">Photo chargée</span> — clique pour changer';
+        dz.querySelector('.dropzone-hint').textContent = file.name;
+
+        canvas.renderAll();
+      });
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Dropzone
+  const dz = document.getElementById('dropzone');
+  const fi = document.getElementById('file-upload');
+  
+  dz.addEventListener('click', () => fi.click());
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('dragover'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+  dz.addEventListener('drop', e => {
+    e.preventDefault();
+    dz.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+  fi.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+  // Shape
+  window.setShape = function(shape) {
+    clipShape = shape;
+    document.getElementById('shape-circle').classList.toggle('active', shape === 'circle');
+    document.getElementById('shape-rect').classList.toggle('active', shape === 'rect');
+    if (userPhoto) applyClipToPhoto(userPhoto);
+  };
+
+  // Zoom
+  document.getElementById('zoom').addEventListener('input', function() {
+    if (!userPhoto) return;
+    const pct = parseInt(this.value);
+    document.getElementById('zoom-val').textContent = pct + '%';
+    
+    const sz = canvas.getWidth();
+    const r = sz * CIRCLE_R_RATIO;
+    const diameter = r * 2;
+    const base = diameter / Math.min(userPhoto.width, userPhoto.height);
+    
+    userPhoto.scale(base * pct / 100);
+    canvas.renderAll();
+  });
+
+  // Step
+  document.getElementById('step-size').addEventListener('input', function() {
+    moveStep = parseInt(this.value);
+    document.getElementById('step-val').textContent = moveStep + 'px';
+  });
+
+  // Move
+  function movePhoto(dx, dy) {
+    if (!userPhoto) return;
+    userPhoto.set({ left: userPhoto.left + dx, top: userPhoto.top + dy });
+    canvas.renderAll();
+  }
+
+  document.getElementById('mv-up').addEventListener('click', () => movePhoto(0, -moveStep));
+  document.getElementById('mv-down').addEventListener('click', () => movePhoto(0, moveStep));
+  document.getElementById('mv-left').addEventListener('click', () => movePhoto(-moveStep, 0));
+  document.getElementById('mv-right').addEventListener('click', () => movePhoto(moveStep, 0));
+
+  // Repeat on hold
+  let mvTimer;
+  const deltas = {
+    'mv-up': [0, -1],
+    'mv-down': [0, 1],
+    'mv-left': [-1, 0],
+    'mv-right': [1, 0]
+  };
+  
+  ['mv-up', 'mv-down', 'mv-left', 'mv-right'].forEach(id => {
+    const btn = document.getElementById(id);
+    btn.addEventListener('mousedown', () => {
+      mvTimer = setInterval(() => {
+        const [dx, dy] = deltas[id];
+        movePhoto(dx * moveStep, dy * moveStep);
+      }, 100);
+    });
+    btn.addEventListener('touchstart', e => {
+      e.preventDefault();
+      mvTimer = setInterval(() => {
+        const [dx, dy] = deltas[id];
+        movePhoto(dx * moveStep, dy * moveStep);
+      }, 100);
+    });
+    btn.addEventListener('mouseup', () => clearInterval(mvTimer));
+    btn.addEventListener('mouseleave', () => clearInterval(mvTimer));
+    btn.addEventListener('touchend', () => clearInterval(mvTimer));
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    const map = {
+      ArrowUp: [0, -5],
+      ArrowDown: [0, 5],
+      ArrowLeft: [-5, 0],
+      ArrowRight: [5, 0]
+    };
+    if (map[e.key]) {
+      e.preventDefault();
+      movePhoto(...map[e.key]);
+    }
+  });
+
+  // Drag
+  let isDragging = false;
+  let lastX = 0, lastY = 0;
+  
+  document.getElementById('flyer-container').addEventListener('mousedown', e => {
+    if (!userPhoto) return;
+    isDragging = true;
+    lastX = e.clientX;
+    lastY = e.clientY;
+  });
+  
+  document.addEventListener('mousemove', e => {
+    if (!isDragging || !userPhoto) return;
+    movePhoto(e.clientX - lastX, e.clientY - lastY);
+    lastX = e.clientX;
+    lastY = e.clientY;
+  });
+  
+  document.addEventListener('mouseup', () => isDragging = false);
+  
+  document.getElementById('flyer-container').addEventListener('touchstart', e => {
+    if (!userPhoto) return;
+    isDragging = true;
+    lastX = e.touches[0].clientX;
+    lastY = e.touches[0].clientY;
+  }, { passive: true });
+  
+  document.addEventListener('touchmove', e => {
+    if (!isDragging || !userPhoto) return;
+    movePhoto(e.touches[0].clientX - lastX, e.touches[0].clientY - lastY);
+    lastX = e.touches[0].clientX;
+    lastY = e.touches[0].clientY;
+  }, { passive: true });
+  
+  document.addEventListener('touchend', () => isDragging = false);
+
+  // Download
+  document.getElementById('dl-btn').addEventListener('click', download);
+  
+  function download() {
+    const btn = document.getElementById('dl-btn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="material-icons-round mi">hourglass_top</span> Génération en cours…';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    setTimeout(() => {
+      try {
+        const dispW = canvas.getWidth();
+        const ratio = EXPORT_SIZE / dispW;
+        const objs = canvas.getObjects();
+
+        canvas.setWidth(EXPORT_SIZE);
+        canvas.setHeight(EXPORT_SIZE);
+        objs.forEach(o => {
+          o.scaleX *= ratio;
+          o.scaleY *= ratio;
+          o.left *= ratio;
+          o.top *= ratio;
+          if (o.clipPath) {
+            const cp = o.clipPath;
+            cp.left *= ratio;
+            cp.top *= ratio;
+            if (cp.radius) cp.radius *= ratio;
+            if (cp.width) { cp.width *= ratio; cp.height *= ratio; }
+            if (cp.rx) { cp.rx *= ratio; cp.ry *= ratio; }
+          }
+          o.setCoords();
+        });
+        canvas.renderAll();
+
+        const dataURL = canvas.toDataURL({ format: 'jpeg', quality: 0.95 });
+
+        canvas.setWidth(dispW);
+        canvas.setHeight(dispW);
+        objs.forEach(o => {
+          o.scaleX /= ratio;
+          o.scaleY /= ratio;
+          o.left /= ratio;
+          o.top /= ratio;
+          if (o.clipPath) {
+            const cp = o.clipPath;
+            cp.left /= ratio;
+            cp.top /= ratio;
+            if (cp.radius) cp.radius /= ratio;
+            if (cp.width) { cp.width /= ratio; cp.height /= ratio; }
+            if (cp.rx) { cp.rx /= ratio; cp.ry /= ratio; }
+          }
+          o.setCoords();
+        });
+        canvas.renderAll();
+
+        const a = document.createElement('a');
+        a.download = 'jy-serai-camp-biblique-ujeebn-2026.jpg';
+        a.href = dataURL;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Erreur lors du téléchargement. Veuillez réessayer.');
+      } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
+    }, 100);
+  }
+
+  // Share
+  window.shareWhatsapp = function() {
+    const txt = encodeURIComponent("🔥 J'y serai ! Camp Biblique UJEEBN 2026 — Dosso, 02-07 Août 2026 !\n« Témoigne du Christ par ta vie » — Mat. 5:14-16");
+    window.open('https://wa.me/?text=' + txt, '_blank');
+  };
+  
+  window.copyLink = function() {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => alert('Lien copié ! Partage-le 🔥'))
+      .catch(() => alert('Lien : ' + window.location.href));
+  };
+
+  // Resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (!canvas) return;
+      const sz = getSize();
+      const old = canvas.getWidth();
+      if (Math.abs(sz - old) < 2) return;
+      const ratio = sz / old;
+      
+      canvas.setWidth(sz);
+      canvas.setHeight(sz);
+      canvas.getObjects().forEach(o => {
+        o.scaleX *= ratio;
+        o.scaleY *= ratio;
+        o.left *= ratio;
+        o.top *= ratio;
+        if (o.clipPath) {
+          const cp = o.clipPath;
+          cp.left *= ratio;
+          cp.top *= ratio;
+          if (cp.radius) cp.radius *= ratio;
+          if (cp.width) { cp.width *= ratio; cp.height *= ratio; }
+          if (cp.rx) { cp.rx *= ratio; cp.ry *= ratio; }
+        }
+        o.setCoords();
+      });
+      canvas.renderAll();
+    }, 200);
+  });
+
+  window.addEventListener('load', initCanvas);
+})();
+</script>
+</body>
+</html>
