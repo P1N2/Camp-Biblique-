@@ -143,6 +143,36 @@ footer a:hover{transform:translateY(-3px);box-shadow:0 5px 20px rgba(246,212,0,.
   .panel-section{padding:14px}
   .steps-guide{flex-direction:column}
 }
+/* Pour la page flyer (nav avec retour) */
+@media(max-width:860px){
+  .nav-inner{
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  .nav-logo{
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  .nav-back{
+    padding: 6px 14px;
+    font-size: 0.75rem;
+  }
+}
+
+@media(max-width:520px){
+  .nav-inner{
+    flex-direction: column;
+    gap: 8px;
+  }
+  .nav-logo{
+    font-size: 0.9rem;
+  }
+  .nav-back{
+    width: 90%;
+    justify-content: center;
+  }
+}
 </style>
 </head>
 <body>
