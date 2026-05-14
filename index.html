@@ -4,6 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>36ème Camp Biblique UJEEBN 2026 — Dosso</title>
+<!-- FAVICON AJOUTÉ -->
+<link rel="icon" type="image/png" href="assets/logo.png"/>
+<link rel="shortcut icon" href="assets/logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet"/>
@@ -101,6 +104,13 @@ a{text-decoration:none;color:inherit}
 .btn-black:hover{background:#333;transform:translateY(-2px)}
 .btn-wa{background:#25d366;color:#fff}
 .btn-wa:hover{background:#128c7e;transform:translateY(-2px)}
+/* Bouton désactivé (après le camp) */
+.btn-disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.2);
+}
 
 /* ============================================================
    SCROLL ANIMATIONS
@@ -127,6 +137,18 @@ nav.scrolled{
 .nav-inner{
   display:flex;align-items:center;justify-content:space-between;
   width:min(96%,1200px);margin-inline:auto;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.nav-logo{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-logo-img{
+  height: 45px;
+  width: auto;
+  object-fit: contain;
 }
 .nav-logo-txt{
   font-family:'Bebas Neue',sans-serif;
@@ -231,6 +253,20 @@ nav.scrolled{
   padding:24px 20px;
   margin-top:10px;
   backdrop-filter:blur(4px);
+  transition: all 0.3s ease;
+}
+.hero-countdown.jour-j{
+  background: linear-gradient(135deg, rgba(246,212,0,.2), rgba(227,6,33,.1));
+  border: 2px solid var(--yellow);
+  animation: pulse-border 1.5s infinite;
+}
+@keyframes pulse-border{
+  0%,100%{border-color: var(--yellow); box-shadow: 0 0 0 0 rgba(246,212,0,.4);}
+  50%{border-color: var(--red); box-shadow: 0 0 0 10px rgba(246,212,0,0);}
+}
+.hero-countdown.apres{
+  background: rgba(0,0,0,.2);
+  opacity: 0.8;
 }
 .hero-countdown-title{
   font-size:.75rem;
@@ -282,6 +318,53 @@ nav.scrolled{
   font-size:clamp(1.5rem,4vw,2.5rem);
   color:var(--yellow);
   margin-bottom:16px;
+}
+/* Message spécial pour jour J ou après le camp */
+.countdown-message{
+  text-align: center;
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.countdown-message.jour-j-message{
+  background: var(--yellow);
+  color: var(--black);
+  animation: pulse-message 1s infinite;
+}
+@keyframes pulse-message{
+  0%,100%{transform: scale(1);}
+  50%{transform: scale(1.02);}
+}
+.countdown-message.apres-message{
+  background: var(--gray-dark);
+  color: white;
+}
+.countdown-message .material-icons-round{
+  font-size: 1.2rem;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.cta-urgent{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--red);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  margin-top: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  animation: bounce 1s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform: translateY(0);}
+  50%{transform: translateY(-5px);}
+}
+.cta-urgent:hover{
+  background: #c0051c;
+  transform: translateY(-2px);
 }
 
 /* Hero Right - Carousel avec vidéo */
@@ -664,7 +747,7 @@ footer{
     text-align: center;
   }
   .nav-logo{
-    font-size: 1.2rem;
+    justify-content: center;
   }
   .nav-cta{
     width: 100%;
@@ -680,9 +763,6 @@ footer{
 @media(max-width:520px){
   .nav-inner{
     gap: 8px;
-  }
-  .nav-logo{
-    font-size: 1rem;
   }
   .nav-cta{
     flex-direction: column;
@@ -704,10 +784,11 @@ footer{
   <img id="lb-img" src="" alt=""/>
 </div>
 
-<!-- NAV -->
+<!-- NAV AVEC LOGO UJEEBN -->
 <nav id="nav">
   <div class="nav-inner">
     <div class="nav-logo">
+      <img src="assets/logo.png" alt="UJEEBN Logo" class="nav-logo-img" onerror="this.style.display='none'"/>
       <div class="nav-logo-txt">
         CAMP<span class="y"> BIBLIQUE</span><br>
         <span class="r">UJEEBN</span><span class="g"> 2026</span>
@@ -751,15 +832,16 @@ footer{
         <div class="hero-chip"><span class="material-icons-round mi" style="color:var(--black)">groups</span> Toute la jeunesse</div>
         <div class="hero-chip"><span class="material-icons-round mi" style="color:var(--red)">local_fire_department</span> 6 jours de transformation</div>
       </div>
-      <div class="hero-btns">
-        <a href="#payment" class="btn btn-yellow"><span class="material-icons-round mi">how_to_reg</span> Je me préinscris</a>
-        <a href="#usp-flyer" class="btn btn-black"><span class="material-icons-round mi">image</span> Mon flyer "Je serai là"</a>
+      <div class="hero-btns" id="hero-btns">
+        <a href="#payment" class="btn btn-yellow" id="hero-preinscription-btn"><span class="material-icons-round mi">how_to_reg</span> Je me préinscris</a>
+        <a href="#usp-flyer" class="btn btn-black" id="hero-flyer-btn"><span class="material-icons-round mi">image</span> Mon flyer "Je serai là"</a>
       </div>
 
-      <!-- COUNTDOWN INTÉGRÉ -->
-      <div class="hero-countdown">
+      <!-- COUNTDOWN INTÉGRÉ (avec gestion des états) -->
+      <div class="hero-countdown" id="hero-countdown">
         <div class="hero-countdown-title">
-          <span class="material-icons-round mi">timer</span> COMPTE À REBOURS
+          <span class="material-icons-round mi" id="countdown-icon">timer</span>
+          <span id="countdown-title">COMPTE À REBOURS</span>
         </div>
         <div class="hero-cd-grid" id="hero-cd-grid">
           <div class="hero-flip-unit"><div class="hero-flip-card" id="hero-days">00</div><div class="hero-flip-label">Jours</div></div>
@@ -770,6 +852,7 @@ footer{
           <div class="hero-cd-sep">:</div>
           <div class="hero-flip-unit"><div class="hero-flip-card" id="hero-secs">00</div><div class="hero-flip-label">Secondes</div></div>
         </div>
+        <div id="countdown-message" class="countdown-message" style="display: none;"></div>
       </div>
     </div>
 
@@ -821,10 +904,10 @@ footer{
     </div>
 
     <div class="center anim-up" style="margin-top:20px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://forms.gle/Ros3ubfVgmNQnxEb7" target="_blank" class="btn" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; gap: 10px; border-radius: 50px;">
+      <a href="https://forms.gle/Ros3ubfVgmNQnxEb7" target="_blank" class="btn" id="formulaire-btn" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; gap: 10px; border-radius: 50px;">
         <span class="material-icons-round mi">assignment</span> Remplir le formulaire
       </a>
-      <a href="https://wa.me/22791546019?text=Bonjour%20je%20souhaite%20confimer%20mon%20inscription%20au%20CAMP%20BIBLIQUE%20UJEEBN%202026" target="_blank" class="btn btn-wa" style="border-radius: 50px;">
+      <a href="https://wa.me/22791546019?text=Bonjour%20je%20souhaite%20confimer%20mon%20inscription%20au%20CAMP%20BIBLIQUE%20UJEEBN%202026" target="_blank" class="btn btn-wa" id="whatsapp-btn" style="border-radius: 50px;">
         <span class="material-icons-round mi">chat</span> Finaliser sur WhatsApp
       </a>
     </div>
@@ -879,7 +962,7 @@ footer{
         <div class="flyer-step"><div class="flyer-step-num">03</div><div class="flyer-step-text">Génération automatique</div></div>
         <div class="flyer-step"><div class="flyer-step-num">04</div><div class="flyer-step-text">Télécharge & partage</div></div>
       </div>
-      <a href="flyer.html"><button class="btn btn-black" style="font-size:1rem;padding:14px 36px;"><span class="material-icons-round mi">add_photo_alternate</span> Générer mon flyer</button></a>
+      <a href="flyer.html" id="flyer-generator-link"><button class="btn btn-black" id="flyer-generator-btn" style="font-size:1rem;padding:14px 36px;"><span class="material-icons-round mi">add_photo_alternate</span> Générer mon flyer</button></a>
     </div>
   </div>
 </section>
@@ -941,9 +1024,9 @@ footer{
     <h2 class="final-title">Le monde a besoin<br>de jeunes qui <span class="y">brillent</span><br>pour <span class="r">Christ</span></h2>
     <p class="final-text">Cette édition n'est pas juste un événement. C'est un rendez-vous spirituel. Ta génération est appelée. Réponds à l'appel.</p>
     <div class="final-btns">
-      <a href="#payment" class="btn btn-yellow"><span class="material-icons-round mi">how_to_reg</span> Je me préinscris maintenant</a>
-      <a href="#usp-flyer" class="btn btn-red"><span class="material-icons-round mi">image</span> Créer mon flyer</a>
-      <a href="https://wa.me/22790129704?text=Bonjour%20je%20souhaite%20confimer%20mon%20inscription%20au%20CAMP%20BIBLIQUE%20UJEEBN%202026" target="_blank" class="btn btn-wa"><span class="material-icons-round mi">chat</span> WhatsApp</a>
+      <a href="#payment" class="btn btn-yellow" id="final-preinscription-btn"><span class="material-icons-round mi">how_to_reg</span> Je me préinscris maintenant</a>
+      <a href="#usp-flyer" class="btn btn-red" id="final-flyer-btn"><span class="material-icons-round mi">image</span> Créer mon flyer</a>
+      <a href="https://wa.me/22790129704?text=Bonjour%20je%20souhaite%20confimer%20mon%20inscription%20au%20CAMP%20BIBLIQUE%20UJEEBN%202026" target="_blank" class="btn btn-wa" id="final-wa-btn"><span class="material-icons-round mi">chat</span> WhatsApp</a>
     </div>
   </div>
 </section>
@@ -956,13 +1039,17 @@ footer{
         <p class="footer-desc">36ème édition • Dosso, Niger<br>02 — 07 Août 2026<br>"Témoigne du Christ par ta vie" — Mat. 5:14-16</p>
       </div>
       <div><div class="footer-col-title">Liens rapides</div><div class="footer-links"><a href="#hero" class="footer-link">Accueil</a><a href="#payment" class="footer-link">Inscription</a><a href="#programme" class="footer-link">Programme</a><a href="#gallery-faq" class="footer-link">Galerie & FAQ</a></div></div>
-      <div><div class="footer-col-title">Contact</div><div class="footer-links"><span class="footer-link">WhatsApp: +227 90129704</span><span class="footer-link">contact@ujeebn.ne</span><span class="footer-link">Dosso, Niger</span></div></div>
+      <div><div class="footer-col-title">Contact</div><div class="footer-links"><span class="footer-link">WhatsApp: +227 90129704</span><span class="footer-link">ujueebniger@gmail.com</span><span class="footer-link">Dosso, Niger</span></div></div>
     </div>
     <div class="footer-bottom"><p>© 2026 Camp Biblique UJEEBN — 36ème Édition. Tous droits réservés.</p><p style="margin-top:6px">"Vous êtes la lumière du monde." — Matthieu 5:14</p></div>
   </div>
 </footer>
 
 <script>
+// ============================================================
+// FONCTIONS PRINCIPALES
+// ============================================================
+
 // NAV SCROLL
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', scrollY > 60));
@@ -971,7 +1058,114 @@ window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', scrol
 const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: .12 });
 document.querySelectorAll('.anim-up,.anim-in').forEach(el => obs.observe(el));
 
+// ============================================================
+// TIMER INTELLIGENT (avec gestion des états)
+// ============================================================
+// Date du début du camp : 02 Août 2026
+const CAMP_START_DATE = new Date(2026, 7, 2, 0, 0, 0); // Mois: 7 = Août
+const CAMP_END_DATE = new Date(2026, 7, 7, 23, 59, 59);
+
+// Éléments du timer
+const countdownContainer = document.getElementById('hero-countdown');
+const cdGrid = document.getElementById('hero-cd-grid');
+const countdownMessageDiv = document.getElementById('countdown-message');
+const countdownTitle = document.getElementById('countdown-title');
+const countdownIcon = document.getElementById('countdown-icon');
+
+// Références vers tous les boutons à désactiver après le camp
+const buttonsToDisable = [
+  'hero-preinscription-btn',
+  'hero-flyer-btn',
+  'formulaire-btn',
+  'whatsapp-btn',
+  'flyer-generator-btn',
+  'final-preinscription-btn',
+  'final-flyer-btn',
+  'final-wa-btn'
+];
+
+function updateCountdown() {
+  const now = new Date();
+  const nowUTC = new Date(now.getTime());
+  const startUTC = new Date(CAMP_START_DATE.getTime());
+  const endUTC = new Date(CAMP_END_DATE.getTime());
+  
+  // === CAS 1: Après le camp (à partir du 03 Août ou après le 07) ===
+  if (nowUTC > endUTC || nowUTC > startUTC && nowUTC.getDate() > 2 && nowUTC.getMonth() === 7) {
+    // Mode "Camp terminé"
+    countdownContainer.classList.add('apres');
+    countdownContainer.classList.remove('jour-j');
+    cdGrid.style.display = 'none';
+    countdownMessageDiv.style.display = 'block';
+    countdownMessageDiv.className = 'countdown-message apres-message';
+    countdownMessageDiv.innerHTML = `
+      <span class="material-icons-round mi">event_busy</span>
+      Le Camp Biblique UJEEBN 2026 est déjà passé !
+      <br><small>Rendez-vous pour la prochaine édition ✨</small>
+    `;
+    countdownTitle.textContent = "CAMP TERMINÉ";
+    countdownIcon.textContent = "event_busy";
+    
+    // Désactiver tous les boutons d'inscription et de flyer
+    buttonsToDisable.forEach(btnId => {
+      const btn = document.getElementById(btnId);
+      if (btn) {
+        btn.classList.add('btn-disabled');
+        btn.style.pointerEvents = 'none';
+        btn.style.opacity = '0.5';
+        btn.style.cursor = 'not-allowed';
+      }
+    });
+    return;
+  }
+  
+  // === CAS 2: Jour J (02 Août 2026) ===
+  if (nowUTC.getDate() === 2 && nowUTC.getMonth() === 7 && nowUTC.getFullYear() === 2026) {
+    countdownContainer.classList.add('jour-j');
+    countdownContainer.classList.remove('apres');
+    cdGrid.style.display = 'none';
+    countdownMessageDiv.style.display = 'block';
+    countdownMessageDiv.className = 'countdown-message jour-j-message';
+    countdownMessageDiv.innerHTML = `
+      <span class="material-icons-round mi">celebration</span>
+      🎉 C'EST LE JOUR J ! 
+      <br>Rejoins-nous maintenant à Dosso !
+      <br>
+      <a href="#payment" class="cta-urgent">
+        <span class="material-icons-round mi">how_to_reg</span> Je m'inscris maintenant !
+      </a>
+    `;
+    countdownTitle.textContent = "JOUR J - REJOINS-NOUS !";
+    countdownIcon.textContent = "celebration";
+    return;
+  }
+  
+  // === CAS 3: Avant le camp (compte à rebours normal) ===
+  countdownContainer.classList.remove('jour-j', 'apres');
+  cdGrid.style.display = 'flex';
+  countdownMessageDiv.style.display = 'none';
+  countdownTitle.textContent = "COMPTE À REBOURS";
+  countdownIcon.textContent = "timer";
+  
+  const diff = Math.max(0, startUTC - nowUTC);
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  
+  document.getElementById('hero-days').textContent = String(days).padStart(2,'0');
+  document.getElementById('hero-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('hero-mins').textContent = String(mins).padStart(2,'0');
+  document.getElementById('hero-secs').textContent = String(secs).padStart(2,'0');
+}
+
+// Mettre à jour toutes les secondes
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ============================================================
 // CAROUSEL avec VIDEO (30s avant de passer aux images)
+// ============================================================
 const slidesData = [
   { type:'video', src:'assets/video.mp4', duration:30000, quote:'"Une expérience spirituelle inoubliable. Je recommande à tous les jeunes !"', author:'— Participant' },
   { type:'image', src:'assets/gallery1.jpg', quote:'"La louange était puissante, la présence de Dieu était palpable."', author:'— Participant' },
@@ -1052,24 +1246,9 @@ resetCarouselTimer();
 document.getElementById('hero-right').addEventListener('mouseenter', () => clearInterval(carouselTimer));
 document.getElementById('hero-right').addEventListener('mouseleave', resetCarouselTimer);
 
-// COUNTDOWN INTÉGRÉ
-function updateHeroCountdown() {
-  const target = new Date('2026-08-02T00:00:00').getTime();
-  const now = Date.now();
-  const diff = Math.max(0, target - now);
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor((diff % 86400000) / 3600000);
-  const mins = Math.floor((diff % 3600000) / 60000);
-  const secs = Math.floor((diff % 60000) / 1000);
-  document.getElementById('hero-days').textContent = String(days).padStart(2,'0');
-  document.getElementById('hero-hours').textContent = String(hours).padStart(2,'0');
-  document.getElementById('hero-mins').textContent = String(mins).padStart(2,'0');
-  document.getElementById('hero-secs').textContent = String(secs).padStart(2,'0');
-}
-updateHeroCountdown();
-setInterval(updateHeroCountdown, 1000);
-
+// ============================================================
 // LIGHTBOX
+// ============================================================
 function openLb(src) { 
   const img = document.getElementById('lb-img');
   img.src = src;
@@ -1083,7 +1262,9 @@ function closeLb() {
 document.getElementById('lightbox').addEventListener('click', e => { if(e.target === document.getElementById('lightbox')) closeLb(); });
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLb(); });
 
+// ============================================================
 // FAQ
+// ============================================================
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
@@ -1091,7 +1272,9 @@ function toggleFaq(el) {
   if(!isOpen) item.classList.add('open');
 }
 
+// ============================================================
 // SMOOTH SCROLL
+// ============================================================
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));

@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Générateur de Flyer — Camp Biblique UJEEBN 2026</title>
+<link rel="icon" type="image/png" href="assets/logo.png"/>
+<link rel="shortcut icon" href="assets/logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
@@ -32,6 +34,11 @@ nav{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:3p
 .nav-inner{display:flex;justify-content:space-between;align-items:center;width:min(96%,1160px);margin:0 auto}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.45rem}
 .nav-logo .y{color:var(--yellow)}.nav-logo .r{color:var(--red)}.nav-logo .g{color:var(--green)}
+.nav-logo-img{
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
 .nav-back{display:flex;align-items:center;gap:6px;padding:9px 18px;border-radius:6px;background:var(--black);color:#fff;font-weight:700;text-decoration:none;transition:all .2s}
 .nav-back:hover{background:#333;transform:translateY(-2px)}
 
@@ -209,6 +216,7 @@ footer a:hover{transform:translateY(-3px);box-shadow:0 5px 20px rgba(246,212,0,.
 
 <nav>
   <div class="nav-inner">
+    <img src="assets/logo.png" alt="UJEEBN Logo" class="nav-logo-img" onerror="this.style.display='none'"/>
     <div class="nav-logo">CAMP<span class="y"> BIBLIQUE</span><span class="r"> UJEEBN</span><span class="g"> 2026</span></div>
     <a href="index.html" class="nav-back">
       <span class="material-icons-round">arrow_back</span>
