@@ -368,6 +368,7 @@ nav.scrolled{
 }
 
 /* Hero Right - Carousel avec vidéo */
+/* Hero Right - Carousel avec vidéo */
 .hero-right{
   background:var(--black);
   position:relative;
@@ -381,13 +382,23 @@ nav.scrolled{
   background:var(--black);
 }
 .hero-slide.active{opacity:1;z-index:1}
-.hero-slide video,
-.hero-slide img{
+.hero-slide img,
+.hero-slide video{
   width:100%;height:100%;object-fit:cover;
   filter:brightness(.55);
+  transition:transform 8s ease-out, filter 0.5s ease;
 }
-.hero-slide.active video,
-.hero-slide.active img{opacity:1}
+.hero-slide.active img,
+.hero-slide.active video{
+  transform:scale(1.07);
+  filter:brightness(.55);
+}
+/* Effet zoom au survol */
+.hero-slide:hover img,
+.hero-slide:hover video{
+  transform:scale(1.05);
+  filter:brightness(.6);
+}
 .hero-slide-overlay{
   position:absolute;inset:0;z-index:2;
   background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.2) 50%,transparent 100%);
