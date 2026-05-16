@@ -113,6 +113,136 @@ a{text-decoration:none;color:inherit}
 }
 
 /* ============================================================
+   ALERTE DATE LIMITE
+   ============================================================ */
+.deadline-alert {
+  background: linear-gradient(135deg, var(--red), #c0051c);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  animation: pulse-alert 1.5s infinite;
+  box-shadow: 0 4px 15px rgba(227,6,33,.4);
+}
+@keyframes pulse-alert {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(227,6,33,.4); }
+  50% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(227,6,33,.6); }
+}
+.deadline-alert .material-icons-round {
+  font-size: 1.3rem;
+  animation: shake 0.5s ease infinite;
+}
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* ============================================================
+   POPUP MODAL
+   ============================================================ */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+.modal.active {
+  display: flex;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.modal-content {
+  background: white;
+  max-width: 480px;
+  width: 90%;
+  border-radius: 28px;
+  overflow: hidden;
+  animation: slideUp 0.4s ease;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.modal-header {
+  background: linear-gradient(135deg, var(--yellow), #e8c200);
+  padding: 28px 24px;
+  text-align: center;
+}
+.modal-header .material-icons-round {
+  font-size: 3.5rem;
+  color: var(--black);
+  margin-bottom: 8px;
+  animation: bounce-icon 0.6s ease;
+}
+@keyframes bounce-icon {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.modal-header h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--black);
+}
+.modal-body {
+  padding: 28px;
+  text-align: center;
+}
+.modal-body p {
+  color: var(--gray-dark);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.modal-body .info-highlight {
+  background: rgba(25,149,86,0.1);
+  padding: 14px;
+  border-radius: 16px;
+  margin: 16px 0;
+  color: var(--green);
+  font-weight: 700;
+  border-left: 4px solid var(--green);
+  text-align: left;
+}
+.modal-body .deadline-highlight {
+  background: rgba(227,6,33,0.1);
+  padding: 14px;
+  border-radius: 16px;
+  margin: 16px 0;
+  color: var(--red);
+  font-weight: 700;
+  border-left: 4px solid var(--red);
+  text-align: left;
+}
+.modal-footer {
+  padding: 20px 28px 28px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.modal-footer .btn {
+  flex: 1;
+  justify-content: center;
+  min-width: 140px;
+}
+
+/* ============================================================
    SCROLL ANIMATIONS
    ============================================================ */
 .anim-up{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
@@ -244,7 +374,7 @@ nav.scrolled{
   font-size:.8rem;font-weight:600;
 }
 .hero-chip .material-icons-round{font-size:1rem;color:var(--red)}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
 
 /* COUNTDOWN INTÉGRÉ DANS HERO */
 .hero-countdown{
@@ -367,7 +497,6 @@ nav.scrolled{
   transform: translateY(-2px);
 }
 
-/* Hero Right - Carousel avec vidéo */
 /* Hero Right - Carousel avec vidéo */
 .hero-right{
   background:var(--black);
@@ -795,6 +924,67 @@ footer{
   <img id="lb-img" src="" alt=""/>
 </div>
 
+<!-- MODAL POPUP 1 - À L'ENTRÉE DU SITE -->
+<div id="welcomeModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="material-icons-round mi">celebration</span>
+      <h3>Bienvenue !</h3>
+    </div>
+    <div class="modal-body">
+      <p>Le Camp Biblique UJEEBN 2026 est un moment unique pour grandir dans la foi et la communion.</p>
+      <div class="info-highlight">
+        <span class="material-icons-round mi" style="vertical-align:middle; font-size:1.2rem;">info</span>
+        À partir de <strong>18 ans</strong>
+      </div>
+      <div class="deadline-highlight">
+        <span class="material-icons-round mi" style="vertical-align:middle; font-size:1.2rem;">event</span>
+        <strong>Date limite des pré-inscriptions : 12 Juillet 2026</strong>
+      </div>
+      <p>Partage l'info avec tes amis et ta famille. Ensemble, vivons cette expérience unique !</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-yellow" id="welcome-modal-inscrire">
+        <span class="material-icons-round mi">how_to_reg</span> Je m'inscris
+      </button>
+      <button class="btn btn-outline" id="welcome-modal-explorer">
+        <span class="material-icons-round mi">explore</span> Explorer le site
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL POPUP 2 - AU CLIC SUR "JE M'INSCRIS" -->
+<div id="inscriptionModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="material-icons-round mi">how_to_reg</span>
+      <h3>Pré-inscription</h3>
+    </div>
+    <div class="modal-body">
+      <p>Tu fais le choix de vivre cette expérience unique !</p>
+      <div class="info-highlight">
+        <span class="material-icons-round mi" style="vertical-align:middle; font-size:1.2rem;">check_circle</span>
+        <strong>À partir de 18 ans</strong> — Tu es le bienvenu(e) !
+      </div>
+      <div class="deadline-highlight">
+        <span class="material-icons-round mi" style="vertical-align:middle; font-size:1.2rem;">event</span>
+        <strong>Attention :</strong> Pré-inscriptions jusqu'au <strong>12 Juillet 2026</strong>
+      </div>
+      <p>Remplis le formulaire ci-dessous pour réserver ta place. <br>Une fois inscrit(e), tu recevras toutes les informations par WhatsApp.</p>
+      <p style="font-size:0.85rem; margin-top:8px;"> Que Dieu te bénisse et prépare ton cœur pour ce que Il a préparé pour toi !</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-yellow" id="inscription-modal-continuer">
+        <span class="material-icons-round mi">assignment</span> Remplir le formulaire
+      </button>
+      <button class="btn btn-outline" id="inscription-modal-annuler">
+        <span class="material-icons-round mi">close</span> Plus tard
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- NAV AVEC LOGO UJEEBN -->
 <nav id="nav">
   <div class="nav-inner">
@@ -813,7 +1003,7 @@ footer{
 </nav>
 
 <!-- ================================================================
-     SECTION 1: HERO + COUNTDOWN INTÉGRÉ
+     SECTION 1: HERO + COUNTDOWN INTÉGRÉ + ALERTE DATE LIMITE
      ================================================================ -->
 <section id="hero">
   <div class="hero-layout">
@@ -843,8 +1033,16 @@ footer{
         <div class="hero-chip"><span class="material-icons-round mi" style="color:var(--black)">groups</span> Toute la jeunesse</div>
         <div class="hero-chip"><span class="material-icons-round mi" style="color:var(--red)">local_fire_department</span> 6 jours de transformation</div>
       </div>
+      
+      <!-- ALERTE DATE LIMITE DANS HERO -->
+      <div class="deadline-alert" id="deadline-alert">
+        <span class="material-icons-round mi">timer</span>
+         Pré-inscriptions jusqu'au <strong>12 Juillet 2026</strong>
+        <span class="material-icons-round mi">groups</span>
+      </div>
+      
       <div class="hero-btns" id="hero-btns">
-        <a href="#payment" class="btn btn-yellow" id="hero-preinscription-btn"><span class="material-icons-round mi">how_to_reg</span> Je me préinscris</a>
+        <a href="#" class="btn btn-yellow" id="hero-preinscription-btn"><span class="material-icons-round mi">how_to_reg</span> Je me préinscris</a>
         <a href="#usp-flyer" class="btn btn-black" id="hero-flyer-btn"><span class="material-icons-round mi">image</span> Mon flyer "Je serai là"</a>
       </div>
 
@@ -889,6 +1087,15 @@ footer{
       <p class="section-sub center anim-up">Inscription rapide via le formulaire. Paiement simple via mobile money. Ta place est confirmée en quelques minutes.</p>
     </div>
 
+    <!-- ALERTE DATE LIMITE DANS LA SECTION PAIEMENT -->
+    <div class="center anim-up">
+      <div class="deadline-alert" style="margin-bottom: 20px;">
+        <span class="material-icons-round mi">event</span>
+        <strong>Attention !</strong> Date limite des pré-inscriptions : <strong>12 Juillet 2026</strong>
+        <span class="material-icons-round mi">share</span> Parle-en autour de toi !
+      </div>
+    </div>
+
     <div class="payment-top anim-up" style="transition-delay:.3s">
       <div class="pay-card pay-amana">
         <div class="pay-logo"><span class="material-icons-round mi">account_balance_wallet</span></div>
@@ -915,7 +1122,7 @@ footer{
     </div>
 
     <div class="center anim-up" style="margin-top:20px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://forms.gle/Ros3ubfVgmNQnxEb7" target="_blank" class="btn" id="formulaire-btn" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; gap: 10px; border-radius: 50px;">
+      <a href="#" class="btn" id="formulaire-btn" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; gap: 10px; border-radius: 50px;">
         <span class="material-icons-round mi">assignment</span> Remplir le formulaire
       </a>
       <a href="https://wa.me/22791546019?text=Bonjour%20je%20souhaite%20confimer%20mon%20inscription%20au%20CAMP%20BIBLIQUE%20UJEEBN%202026" target="_blank" class="btn btn-wa" id="whatsapp-btn" style="border-radius: 50px;">
@@ -1035,7 +1242,7 @@ footer{
     <h2 class="final-title">Le monde a besoin<br>de jeunes qui <span class="y">brillent</span><br>pour <span class="r">Christ</span></h2>
     <p class="final-text">Cette édition n'est pas juste un événement. C'est un rendez-vous spirituel. Ta génération est appelée. Réponds à l'appel.</p>
     <div class="final-btns">
-      <a href="#payment" class="btn btn-yellow" id="final-preinscription-btn"><span class="material-icons-round mi">how_to_reg</span> Je me préinscris maintenant</a>
+      <a href="#" class="btn btn-yellow" id="final-preinscription-btn"><span class="material-icons-round mi">how_to_reg</span> Je me préinscris maintenant</a>
       <a href="#usp-flyer" class="btn btn-red" id="final-flyer-btn"><span class="material-icons-round mi">image</span> Créer mon flyer</a>
       <a href="https://wa.me/22790129704?text=Bonjour%20je%20souhaite%20confimer%20mon%20inscription%20au%20CAMP%20BIBLIQUE%20UJEEBN%202026" target="_blank" class="btn btn-wa" id="final-wa-btn"><span class="material-icons-round mi">chat</span> WhatsApp</a>
     </div>
@@ -1068,6 +1275,114 @@ window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', scrol
 // SCROLL ANIMATIONS
 const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: .12 });
 document.querySelectorAll('.anim-up,.anim-in').forEach(el => obs.observe(el));
+
+// ============================================================
+// URL DU FORMULAIRE
+// ============================================================
+const FORM_URL = 'https://forms.gle/Ros3ubfVgmNQnxEb7';
+
+// ============================================================
+// POPUP 1 - À L'ENTRÉE DU SITE
+// ============================================================
+const welcomeModal = document.getElementById('welcomeModal');
+const welcomeModalInscrire = document.getElementById('welcome-modal-inscrire');
+const welcomeModalExplorer = document.getElementById('welcome-modal-explorer');
+
+// Variables pour suivre si les popups ont été vues
+let welcomeModalShown = sessionStorage.getItem('welcomeModalShown');
+
+// Afficher la popup de bienvenue au chargement (une fois par session)
+if (!welcomeModalShown) {
+  setTimeout(() => {
+    welcomeModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }, 500);
+}
+
+// Bouton "Je m'inscris" dans la popup de bienvenue
+welcomeModalInscrire.addEventListener('click', () => {
+  welcomeModal.classList.remove('active');
+  document.body.style.overflow = '';
+  sessionStorage.setItem('welcomeModalShown', 'true');
+  // Afficher la popup d'inscription
+  inscriptionModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+
+// Bouton "Explorer le site" dans la popup de bienvenue
+welcomeModalExplorer.addEventListener('click', () => {
+  welcomeModal.classList.remove('active');
+  document.body.style.overflow = '';
+  sessionStorage.setItem('welcomeModalShown', 'true');
+});
+
+// Fermer la popup de bienvenue en cliquant en dehors
+welcomeModal.addEventListener('click', (e) => {
+  if (e.target === welcomeModal) {
+    welcomeModal.classList.remove('active');
+    document.body.style.overflow = '';
+    sessionStorage.setItem('welcomeModalShown', 'true');
+  }
+});
+
+// ============================================================
+// POPUP 2 - AU CLIC SUR "JE M'INSCRIS"
+// ============================================================
+const inscriptionModal = document.getElementById('inscriptionModal');
+const inscriptionModalContinuer = document.getElementById('inscription-modal-continuer');
+const inscriptionModalAnnuler = document.getElementById('inscription-modal-annuler');
+
+// Fonction pour ouvrir la popup d'inscription
+function openInscriptionModal() {
+  inscriptionModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+// Fonction pour fermer la popup d'inscription
+function closeInscriptionModal() {
+  inscriptionModal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Bouton "Remplir le formulaire"
+inscriptionModalContinuer.addEventListener('click', () => {
+  closeInscriptionModal();
+  window.open(FORM_URL, '_blank');
+});
+
+// Bouton "Plus tard"
+inscriptionModalAnnuler.addEventListener('click', () => {
+  closeInscriptionModal();
+});
+
+// Fermer en cliquant en dehors
+inscriptionModal.addEventListener('click', (e) => {
+  if (e.target === inscriptionModal) {
+    closeInscriptionModal();
+  }
+});
+
+// ============================================================
+// BOUTONS "JE M'INSCRIS" DANS LA PAGE
+// ============================================================
+const heroPreinscriptionBtn = document.getElementById('hero-preinscription-btn');
+const finalPreinscriptionBtn = document.getElementById('final-preinscription-btn');
+const formulaireBtn = document.getElementById('formulaire-btn');
+
+heroPreinscriptionBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  openInscriptionModal();
+});
+
+finalPreinscriptionBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  openInscriptionModal();
+});
+
+formulaireBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  openInscriptionModal();
+});
 
 // ============================================================
 // TIMER INTELLIGENT (avec gestion des états)
@@ -1139,7 +1454,7 @@ function updateCountdown() {
     countdownMessageDiv.className = 'countdown-message jour-j-message';
     countdownMessageDiv.innerHTML = `
       <span class="material-icons-round mi">celebration</span>
-      🎉 C'EST LE JOUR J ! 
+      🎉 C'EST LE JOUR J ! 🎉
       <br>Rejoins-nous maintenant à Dosso !
       <br>
       <a href="#payment" class="cta-urgent">
@@ -1286,7 +1601,7 @@ function toggleFaq(el) {
 // ============================================================
 // SMOOTH SCROLL
 // ============================================================
-document.querySelectorAll('a[href^="#"]').forEach(a => {
+document.querySelectorAll('a[href^="#"]:not(.btn-yellow):not(.btn-black):not(.btn-wa):not(.btn-outline)').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
     if(target) { e.preventDefault(); target.scrollIntoView({ behavior:'smooth', block:'start' }); }
