@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>36ème Camp Biblique UJEEBN 2026 — Dosso</title>
-<!-- FAVICON AJOUTÉ -->
+<!-- FAVICON -->
 <link rel="icon" type="image/png" href="assets/logo.png"/>
 <link rel="shortcut icon" href="assets/logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -21,6 +21,7 @@
   --black:    #111111;
   --red:      #e30621;
   --green:    #199556;
+  --orange:   #ff8c00;
   --gray:     #f4f4f4;
   --gray-mid: #e0e0e0;
   --gray-dark:#666;
@@ -104,7 +105,6 @@ a{text-decoration:none;color:inherit}
 .btn-black:hover{background:#333;transform:translateY(-2px)}
 .btn-wa{background:#25d366;color:#fff}
 .btn-wa:hover{background:#128c7e;transform:translateY(-2px)}
-/* Bouton désactivé (après le camp) */
 .btn-disabled{
   opacity: 0.5;
   cursor: not-allowed;
@@ -113,34 +113,57 @@ a{text-decoration:none;color:inherit}
 }
 
 /* ============================================================
-   ALERTE DATE LIMITE
+   ALERTES DATES LIMITES (Design amélioré)
    ============================================================ */
+.deadline-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
 .deadline-alert {
-  background: linear-gradient(135deg, var(--red), #c0051c);
-  color: white;
   padding: 12px 20px;
-  border-radius: 50px;
+  border-radius: 60px;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-weight: 700;
   font-size: 0.85rem;
-  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.2);
   animation: pulse-alert 1.5s infinite;
-  box-shadow: 0 4px 15px rgba(227,6,33,.4);
-}
-@keyframes pulse-alert {
-  0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(227,6,33,.4); }
-  50% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(227,6,33,.6); }
+  flex: 1;
+  min-width: 240px;
+  justify-content: center;
 }
 .deadline-alert .material-icons-round {
   font-size: 1.3rem;
   animation: shake 0.5s ease infinite;
 }
+.deadline-preinscription {
+  background: linear-gradient(135deg, var(--red), #c0051c);
+  color: white;
+}
+.deadline-paiement {
+  background: linear-gradient(135deg, var(--orange), #e07c00);
+  color: white;
+}
+@keyframes pulse-alert {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,0,0,.3); }
+  50% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(0,0,0,.4); }
+}
 @keyframes shake {
   0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-10deg); }
-  75% { transform: rotate(10deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+.deadline-countdown {
+  background: rgba(0,0,0,0.25);
+  padding: 4px 12px;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
 }
 
 /* ============================================================
@@ -160,16 +183,14 @@ a{text-decoration:none;color:inherit}
   justify-content: center;
   animation: fadeIn 0.3s ease;
 }
-.modal.active {
-  display: flex;
-}
+.modal.active { display: flex; }
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 .modal-content {
   background: white;
-  max-width: 480px;
+  max-width: 500px;
   width: 90%;
   border-radius: 28px;
   overflow: hidden;
@@ -200,15 +221,8 @@ a{text-decoration:none;color:inherit}
   font-size: 2rem;
   color: var(--black);
 }
-.modal-body {
-  padding: 28px;
-  text-align: center;
-}
-.modal-body p {
-  color: var(--gray-dark);
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
+.modal-body { padding: 28px; text-align: center; }
+.modal-body p { color: var(--gray-dark); line-height: 1.6; margin-bottom: 16px; }
 .modal-body .info-highlight {
   background: rgba(25,149,86,0.1);
   padding: 14px;
@@ -229,6 +243,16 @@ a{text-decoration:none;color:inherit}
   border-left: 4px solid var(--red);
   text-align: left;
 }
+.modal-body .deadline-paiement-highlight {
+  background: rgba(255,140,0,0.1);
+  padding: 14px;
+  border-radius: 16px;
+  margin: 16px 0;
+  color: var(--orange);
+  font-weight: 700;
+  border-left: 4px solid var(--orange);
+  text-align: left;
+}
 .modal-footer {
   padding: 20px 28px 28px;
   display: flex;
@@ -236,11 +260,7 @@ a{text-decoration:none;color:inherit}
   justify-content: center;
   flex-wrap: wrap;
 }
-.modal-footer .btn {
-  flex: 1;
-  justify-content: center;
-  min-width: 140px;
-}
+.modal-footer .btn { flex: 1; justify-content: center; min-width: 140px; }
 
 /* ============================================================
    SCROLL ANIMATIONS
@@ -270,16 +290,8 @@ nav.scrolled{
   gap: 20px;
   flex-wrap: wrap;
 }
-.nav-logo{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.nav-logo-img{
-  height: 45px;
-  width: auto;
-  object-fit: contain;
-}
+.nav-logo{ display: flex; align-items: center; gap: 12px; }
+.nav-logo-img{ height: 45px; width: auto; object-fit: contain; }
 .nav-logo-txt{
   font-family:'Bebas Neue',sans-serif;
   font-size:1.5rem;
@@ -394,10 +406,7 @@ nav.scrolled{
   0%,100%{border-color: var(--yellow); box-shadow: 0 0 0 0 rgba(246,212,0,.4);}
   50%{border-color: var(--red); box-shadow: 0 0 0 10px rgba(246,212,0,0);}
 }
-.hero-countdown.apres{
-  background: rgba(0,0,0,.2);
-  opacity: 0.8;
-}
+.hero-countdown.apres{ background: rgba(0,0,0,.2); opacity: 0.8; }
 .hero-countdown-title{
   font-size:.75rem;
   font-weight:800;
@@ -449,7 +458,6 @@ nav.scrolled{
   color:var(--yellow);
   margin-bottom:16px;
 }
-/* Message spécial pour jour J ou après le camp */
 .countdown-message{
   text-align: center;
   margin-top: 16px;
@@ -522,7 +530,6 @@ nav.scrolled{
   transform:scale(1.07);
   filter:brightness(.55);
 }
-/* Effet zoom au survol */
 .hero-slide:hover img,
 .hero-slide:hover video{
   transform:scale(1.05);
@@ -572,7 +579,7 @@ nav.scrolled{
 .carousel-next{right:16px}
 
 /* ============================================================
-   SECTION BAND (titre de section visible)
+   SECTION BAND
    ============================================================ */
 .section-band{
   background:var(--yellow);
@@ -859,6 +866,9 @@ footer{
   text-align:center;font-size:.76rem;color:rgba(255,255,255,.3);
 }
 
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media(max-width:860px){
   .hero-layout{grid-template-columns:1fr}
   .hero-right{min-height:360px}
@@ -872,48 +882,28 @@ footer{
   .hero-btns .btn{width:100%;justify-content:center}
   .final-btns{flex-direction:column;align-items:center}
   .usp-grid{grid-template-columns:1fr 1fr}
+  .deadline-container { flex-direction: column; align-items: center; }
+  .deadline-alert { width: 100%; max-width: 320px; }
 }
-@media(max-width:520px){.usp-grid{grid-template-columns:1fr}}
+@media(max-width:520px){
+  .usp-grid{grid-template-columns:1fr}
+  .deadline-alert { font-size: 0.75rem; padding: 10px 16px; gap: 8px; }
+  .deadline-alert .material-icons-round { font-size: 1.1rem; }
+}
 /* ============================================================
-   NAVIGATION RESPONSIVE (Version améliorée)
+   NAVIGATION RESPONSIVE
    ============================================================ */
 @media(max-width:860px){
-  nav{
-    padding: 10px 0;
-  }
-  .nav-inner{
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
-  }
-  .nav-logo{
-    justify-content: center;
-  }
-  .nav-cta{
-    width: 100%;
-    justify-content: center;
-    gap: 12px;
-  }
-  .nav-cta .btn{
-    padding: 8px 20px;
-    font-size: 0.8rem;
-  }
+  nav{ padding: 10px 0; }
+  .nav-inner{ flex-direction: column; gap: 12px; text-align: center; }
+  .nav-logo{ justify-content: center; }
+  .nav-cta{ width: 100%; justify-content: center; gap: 12px; }
+  .nav-cta .btn{ padding: 8px 20px; font-size: 0.8rem; }
 }
-
 @media(max-width:520px){
-  .nav-inner{
-    gap: 8px;
-  }
-  .nav-cta{
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-  .nav-cta .btn{
-    width: 90%;
-    justify-content: center;
-    padding: 10px 16px;
-  }
+  .nav-inner{ gap: 8px; }
+  .nav-cta{ flex-direction: column; align-items: center; gap: 8px; }
+  .nav-cta .btn{ width: 90%; justify-content: center; padding: 10px 16px; }
 }
 </style>
 </head>
@@ -939,7 +929,11 @@ footer{
       </div>
       <div class="deadline-highlight">
         <span class="material-icons-round mi" style="vertical-align:middle; font-size:1.2rem;">event</span>
-        <strong>Date limite des pré-inscriptions : 12 Juillet 2026</strong>
+        <strong>Pré-inscriptions : 12 Juillet 2026</strong>
+      </div>
+      <div class="deadline-paiement-highlight">
+        <span class="material-icons-round mi" style="vertical-align:middle; font-size:1.2rem;">payments</span>
+        <strong>Clôture des paiements : 26 Juillet 2026</strong>
       </div>
       <p>Partage l'info avec tes amis et ta famille. Ensemble, vivons cette expérience unique !</p>
     </div>
@@ -962,16 +956,20 @@ footer{
       <h3>Pré-inscription</h3>
     </div>
     <div class="modal-body">
-      <p>Tu fais le choix de vivre cette expérience unique !</p>
+      <p> Tu fais le choix de vivre cette expérience unique !</p>
       <div class="info-highlight">
         <span class="material-icons-round mi" style="vertical-align:middle; font-size:1.2rem;">check_circle</span>
         <strong>À partir de 18 ans</strong> — Tu es le bienvenu(e) !
       </div>
       <div class="deadline-highlight">
         <span class="material-icons-round mi" style="vertical-align:middle; font-size:1.2rem;">event</span>
-        <strong>Attention :</strong> Pré-inscriptions jusqu'au <strong>12 Juillet 2026</strong>
+         <strong>Pré-inscriptions jusqu'au 12 Juillet 2026</strong>
       </div>
-      <p>Remplis le formulaire ci-dessous pour réserver ta place. <br>Une fois inscrit(e), tu recevras toutes les informations par WhatsApp.</p>
+      <div class="deadline-paiement-highlight">
+        <span class="material-icons-round mi" style="vertical-align:middle; font-size:1.2rem;">payments</span>
+        <strong>Clôture de Paiement le 26 Juillet 2026</strong>
+      </div>
+      <p> Remplis le formulaire ci-dessous pour réserver ta place. <br>Une fois inscrit(e), tu recevras toutes les informations par WhatsApp.</p>
       <p style="font-size:0.85rem; margin-top:8px;"> Que Dieu te bénisse et prépare ton cœur pour ce que Il a préparé pour toi !</p>
     </div>
     <div class="modal-footer">
@@ -1003,7 +1001,7 @@ footer{
 </nav>
 
 <!-- ================================================================
-     SECTION 1: HERO + COUNTDOWN INTÉGRÉ + ALERTE DATE LIMITE
+     SECTION 1: HERO + COUNTDOWN INTÉGRÉ + ALERTES DATES LIMITES
      ================================================================ -->
 <section id="hero">
   <div class="hero-layout">
@@ -1034,11 +1032,18 @@ footer{
         <div class="hero-chip"><span class="material-icons-round mi" style="color:var(--red)">local_fire_department</span> 6 jours de transformation</div>
       </div>
       
-      <!-- ALERTE DATE LIMITE DANS HERO -->
-      <div class="deadline-alert" id="deadline-alert">
-        <span class="material-icons-round mi">timer</span>
-         Pré-inscriptions jusqu'au <strong>12 Juillet 2026</strong>
-        <span class="material-icons-round mi">groups</span>
+      <!-- ALERTES DATES LIMITES DANS HERO -->
+      <div class="deadline-container">
+        <div class="deadline-alert deadline-preinscription">
+          <span class="material-icons-round mi">event</span>
+          Pré-inscriptions : <strong>12 Juillet 2026</strong>
+          <span class="material-icons-round mi">timer</span>
+        </div>
+        <div class="deadline-alert deadline-paiement">
+          <span class="material-icons-round mi">payments</span>
+           Clôture paiements : <strong>26 Juillet 2026</strong>
+          <span class="material-icons-round mi">schedule</span>
+        </div>
       </div>
       
       <div class="hero-btns" id="hero-btns">
@@ -1046,7 +1051,7 @@ footer{
         <a href="#usp-flyer" class="btn btn-black" id="hero-flyer-btn"><span class="material-icons-round mi">image</span> Mon flyer "Je serai là"</a>
       </div>
 
-      <!-- COUNTDOWN INTÉGRÉ (avec gestion des états) -->
+      <!-- COUNTDOWN INTÉGRÉ -->
       <div class="hero-countdown" id="hero-countdown">
         <div class="hero-countdown-title">
           <span class="material-icons-round mi" id="countdown-icon">timer</span>
@@ -1087,12 +1092,19 @@ footer{
       <p class="section-sub center anim-up">Inscription rapide via le formulaire. Paiement simple via mobile money. Ta place est confirmée en quelques minutes.</p>
     </div>
 
-    <!-- ALERTE DATE LIMITE DANS LA SECTION PAIEMENT -->
+    <!-- ALERTES DATES LIMITES DANS LA SECTION PAIEMENT -->
     <div class="center anim-up">
-      <div class="deadline-alert" style="margin-bottom: 20px;">
-        <span class="material-icons-round mi">event</span>
-        <strong>Attention !</strong> Date limite des pré-inscriptions : <strong>12 Juillet 2026</strong>
-        <span class="material-icons-round mi">share</span> Parle-en autour de toi !
+      <div class="deadline-container">
+        <div class="deadline-alert deadline-preinscription">
+          <span class="material-icons-round mi">event</span>
+          <strong>Pré-inscriptions jusqu'au 12 Juillet 2026</strong>
+          <span class="material-icons-round mi">share</span>
+        </div>
+        <div class="deadline-alert deadline-paiement">
+          <span class="material-icons-round mi">payments</span>
+          <strong> Clôture de Paiement le 26 Juillet 2026</strong>
+          <span class="material-icons-round mi">schedule</span>
+        </div>
       </div>
     </div>
 
@@ -1130,7 +1142,7 @@ footer{
       </a>
     </div>
 
-    <!-- TÉMOIGNAGES (sans noms) -->
+    <!-- TÉMOIGNAGES -->
     <div class="center" style="margin-top:60px"><div class="section-band"><span class="material-icons-round mi">format_quote</span> Ils témoignent</div></div>
     <div class="temoignages-grid anim-up">
       <div class="temoignage-card">
@@ -1288,10 +1300,8 @@ const welcomeModal = document.getElementById('welcomeModal');
 const welcomeModalInscrire = document.getElementById('welcome-modal-inscrire');
 const welcomeModalExplorer = document.getElementById('welcome-modal-explorer');
 
-// Variables pour suivre si les popups ont été vues
 let welcomeModalShown = sessionStorage.getItem('welcomeModalShown');
 
-// Afficher la popup de bienvenue au chargement (une fois par session)
 if (!welcomeModalShown) {
   setTimeout(() => {
     welcomeModal.classList.add('active');
@@ -1299,24 +1309,20 @@ if (!welcomeModalShown) {
   }, 500);
 }
 
-// Bouton "Je m'inscris" dans la popup de bienvenue
 welcomeModalInscrire.addEventListener('click', () => {
   welcomeModal.classList.remove('active');
   document.body.style.overflow = '';
   sessionStorage.setItem('welcomeModalShown', 'true');
-  // Afficher la popup d'inscription
   inscriptionModal.classList.add('active');
   document.body.style.overflow = 'hidden';
 });
 
-// Bouton "Explorer le site" dans la popup de bienvenue
 welcomeModalExplorer.addEventListener('click', () => {
   welcomeModal.classList.remove('active');
   document.body.style.overflow = '';
   sessionStorage.setItem('welcomeModalShown', 'true');
 });
 
-// Fermer la popup de bienvenue en cliquant en dehors
 welcomeModal.addEventListener('click', (e) => {
   if (e.target === welcomeModal) {
     welcomeModal.classList.remove('active');
@@ -1332,30 +1338,25 @@ const inscriptionModal = document.getElementById('inscriptionModal');
 const inscriptionModalContinuer = document.getElementById('inscription-modal-continuer');
 const inscriptionModalAnnuler = document.getElementById('inscription-modal-annuler');
 
-// Fonction pour ouvrir la popup d'inscription
 function openInscriptionModal() {
   inscriptionModal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-// Fonction pour fermer la popup d'inscription
 function closeInscriptionModal() {
   inscriptionModal.classList.remove('active');
   document.body.style.overflow = '';
 }
 
-// Bouton "Remplir le formulaire"
 inscriptionModalContinuer.addEventListener('click', () => {
   closeInscriptionModal();
   window.open(FORM_URL, '_blank');
 });
 
-// Bouton "Plus tard"
 inscriptionModalAnnuler.addEventListener('click', () => {
   closeInscriptionModal();
 });
 
-// Fermer en cliquant en dehors
 inscriptionModal.addEventListener('click', (e) => {
   if (e.target === inscriptionModal) {
     closeInscriptionModal();
@@ -1385,29 +1386,21 @@ formulaireBtn.addEventListener('click', (e) => {
 });
 
 // ============================================================
-// TIMER INTELLIGENT (avec gestion des états)
+// TIMER INTELLIGENT
 // ============================================================
-// Date du début du camp : 02 Août 2026
-const CAMP_START_DATE = new Date(2026, 7, 2, 0, 0, 0); // Mois: 7 = Août
+const CAMP_START_DATE = new Date(2026, 7, 2, 0, 0, 0);
 const CAMP_END_DATE = new Date(2026, 7, 7, 23, 59, 59);
 
-// Éléments du timer
 const countdownContainer = document.getElementById('hero-countdown');
 const cdGrid = document.getElementById('hero-cd-grid');
 const countdownMessageDiv = document.getElementById('countdown-message');
 const countdownTitle = document.getElementById('countdown-title');
 const countdownIcon = document.getElementById('countdown-icon');
 
-// Références vers tous les boutons à désactiver après le camp
 const buttonsToDisable = [
-  'hero-preinscription-btn',
-  'hero-flyer-btn',
-  'formulaire-btn',
-  'whatsapp-btn',
-  'flyer-generator-btn',
-  'final-preinscription-btn',
-  'final-flyer-btn',
-  'final-wa-btn'
+  'hero-preinscription-btn', 'hero-flyer-btn', 'formulaire-btn',
+  'whatsapp-btn', 'flyer-generator-btn', 'final-preinscription-btn',
+  'final-flyer-btn', 'final-wa-btn'
 ];
 
 function updateCountdown() {
@@ -1416,9 +1409,7 @@ function updateCountdown() {
   const startUTC = new Date(CAMP_START_DATE.getTime());
   const endUTC = new Date(CAMP_END_DATE.getTime());
   
-  // === CAS 1: Après le camp (à partir du 03 Août ou après le 07) ===
   if (nowUTC > endUTC || nowUTC > startUTC && nowUTC.getDate() > 2 && nowUTC.getMonth() === 7) {
-    // Mode "Camp terminé"
     countdownContainer.classList.add('apres');
     countdownContainer.classList.remove('jour-j');
     cdGrid.style.display = 'none';
@@ -1432,7 +1423,6 @@ function updateCountdown() {
     countdownTitle.textContent = "CAMP TERMINÉ";
     countdownIcon.textContent = "event_busy";
     
-    // Désactiver tous les boutons d'inscription et de flyer
     buttonsToDisable.forEach(btnId => {
       const btn = document.getElementById(btnId);
       if (btn) {
@@ -1445,7 +1435,6 @@ function updateCountdown() {
     return;
   }
   
-  // === CAS 2: Jour J (02 Août 2026) ===
   if (nowUTC.getDate() === 2 && nowUTC.getMonth() === 7 && nowUTC.getFullYear() === 2026) {
     countdownContainer.classList.add('jour-j');
     countdownContainer.classList.remove('apres');
@@ -1466,7 +1455,6 @@ function updateCountdown() {
     return;
   }
   
-  // === CAS 3: Avant le camp (compte à rebours normal) ===
   countdownContainer.classList.remove('jour-j', 'apres');
   cdGrid.style.display = 'flex';
   countdownMessageDiv.style.display = 'none';
@@ -1485,12 +1473,11 @@ function updateCountdown() {
   document.getElementById('hero-secs').textContent = String(secs).padStart(2,'0');
 }
 
-// Mettre à jour toutes les secondes
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
 // ============================================================
-// CAROUSEL avec VIDEO (30s avant de passer aux images)
+// CAROUSEL
 // ============================================================
 const slidesData = [
   { type:'video', src:'assets/video.mp4', duration:30000, quote:'"Une expérience spirituelle inoubliable. Je recommande à tous les jeunes !"', author:'— Participant' },
